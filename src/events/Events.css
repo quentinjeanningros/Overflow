@@ -1,5 +1,11 @@
-#events__background {
-    background-color: #ffffff;
-    width: 100%;
-    height: 100vh;
+#background-text-event {
+    position: absolute;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18.2vw;
+    font-weight: 700;
+    color: #003CB9;
+    bottom: 0vh;
+    left: 2%;
+    margin-bottom: -2%;
+    overflow: hidden;
 }

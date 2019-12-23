@@ -5,3 +5,56 @@
     margin: 0px;
     padding: 0px;
 }
+
+.background {
+    width: 100%;
+    height: 100vh;
+}
+
+.square-title {
+    width: 2.5vw;
+    height: 2.5vw;
+    position: absolute;
+    top: 0%;
+    left: 0vh;
+}
+
+.page-title {
+    position: absolute;
+    font-family: 'Roboto Slab', serif;
+    font-size: 6vw;
+    font-weight: 700;
+    left: 3.5vw;
+    top: 1vw;
+}
+
+.blue-backcolor {
+    background-color: #005FFF;
+}
+
+.white-backcolor {
+    background-color: #ffffff;
+}
+
+.black-backcolor {
+    background-color: #000000;
+}
+
+.blue-color {
+    color: #005FFF;
+}
+
+.white-color {
+    color: #ffffff;
+}
+
+.black-color {
+    color: #000000;
+}
+
+.select-none {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
