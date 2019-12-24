@@ -10,7 +10,7 @@ class Home extends React.Component {
 
     render() {
         return (
-            <div className="background black-backcolor">
+            <div className="background black-color--back">
 
             </div>
         )

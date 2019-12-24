@@ -1,23 +1,23 @@
 import React from 'react';
 import './Events.css'
-import Topbar from '../assets/Topbar.js';
+import {NavigationBar, Link} from '../assets/NavigationBar.js';
 
 class Events extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
         }
-        this.pages = ["Home", "Partnership"]
+        this.linkedPages = [new Link("Home", "/home"), new Link("Partnership", "Partnership")]
     }
 
     render() {
         let backgroundText = "paintball".toUpperCase()
         return (
-            <div className="background blue-backcolor">
-                <div className="square-title white-backcolor"/>
-                <h1 className="page-title white-color">Events</h1>
+            <div className="background blue-color--back">
+                <div className="square-title white-color--back"/>
+                <h1 className="page-title white-color select-none">Events</h1>
                 <h2 id="background-text-event">{backgroundText}</h2>
-                <Topbar color="black-color" triggerColor="white-color" pages={this.pages}/>
+                <NavigationBar color="black-color" triggerColor="white-color" links={this.linkedPages}/>
             </div>
         )
     }

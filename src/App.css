@@ -12,8 +12,8 @@
 }
 
 .square-title {
-    width: 2.5vw;
-    height: 2.5vw;
+    width: 2.25vw;
+    height: 2.25vw;
     position: absolute;
     top: 0%;
     left: 0vh;
@@ -24,19 +24,19 @@
     font-family: 'Roboto Slab', serif;
     font-size: 6vw;
     font-weight: 700;
-    left: 3.5vw;
+    left: 3vw;
     top: 1vw;
 }
 
-.blue-backcolor {
+.blue-color--back {
     background-color: #005FFF;
 }
 
-.white-backcolor {
+.white-color--back {
     background-color: #ffffff;
 }
 
-.black-backcolor {
+.black-color--back {
     background-color: #000000;
 }
 

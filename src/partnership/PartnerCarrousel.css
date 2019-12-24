@@ -1,0 +1,16 @@
+.partner-carrousel__container {
+    display: flex;
+    margin-top: 10vw;
+}
+
+.partner-card__background {
+    background-color: #000000;
+    height: 40vh;
+    width: 30vw;
+    margin-left: 2.5vw;
+    margin-right: 2.5vw;
+    box-shadow: 15px 15px 20px rgba(0, 0, 0, 0.50);
+}
+
+.partner-card__text {
+}

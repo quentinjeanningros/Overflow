@@ -1,0 +1,50 @@
+.navigation-bar__container {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    right: 1%;
+    top: 1vh;
+    justify-content: flex-end;
+}
+
+.navigation-bar__link-container {
+    margin-left: 2%;
+    margin-right: 2%;
+    display: flex;
+}
+
+.navigation-bar__link-container--hover {
+    margin-left: 2%;
+    margin-right: 2%;
+    display: flex;
+}
+
+.navigation-bar__link-text {
+    transition: all 0.15s ease-out 0.15s;
+    font-family: 'Roboto Slab', serif;
+    font-size: 2vw;
+    font-weight: 700;
+    margin-top: 0.5vw;
+}
+
+.navigation-bar__link-text--hover {
+    transition: all 0.15s ease-out 0.15s;
+    font-family: 'Roboto Slab', serif;
+    font-size: 2.5vw;
+    font-weight: 700;
+    margin-top: 0.0vw;
+}
+
+.navigation-bar__link-square {
+    transition: all 0.1s ease-out 0.1s;
+    width: 1vw;
+    height: 1vw;
+    margin-right: 0.25vw;
+}
+
+.navigation-bar__link-square--hover {
+    transition: all 0.15s ease-out 0.15s;
+    width: 1.5vw;
+    height: 100%;
+    margin-right: 0.5vw;
+}
