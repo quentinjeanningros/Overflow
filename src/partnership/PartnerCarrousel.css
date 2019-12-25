@@ -1,12 +1,15 @@
 .partner-carrousel__container {
     display: flex;
     margin-top: 10vw;
+    width: 200%;
+    overflow: hidden;
+    height: 60%;
 }
 
 .partner-card__background {
     background-color: #000000;
     height: 40vh;
-    width: 30vw;
+    width: 30vh;
     margin-left: 2.5vw;
     margin-right: 2.5vw;
     box-shadow: 15px 15px 20px rgba(0, 0, 0, 0.50);
