@@ -1,6 +1,6 @@
 import React from 'react';
 import {PartnerCarrousel, Partner}  from './PartnerCarrousel.js';
-import {NavigationBar, Link}  from '../assets/NavigationBar.js';
+import {NavigationBar, Link}  from '../modules/NavigationBar.js';
 import './Partnership.css'
 
 class Partnership extends React.Component {

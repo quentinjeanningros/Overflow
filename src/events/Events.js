@@ -1,6 +1,6 @@
 import React from 'react';
 import './Events.css'
-import {NavigationBar, Link} from '../assets/NavigationBar.js';
+import {NavigationBar, Link} from '../modules/NavigationBar.js';
 
 class Events extends React.Component {
     constructor(props) {

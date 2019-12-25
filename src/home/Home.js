@@ -1,4 +1,5 @@
 import React from 'react';
+import Info from './Info.js'
 import './Home.css'
 
 class Home extends React.Component {
@@ -10,11 +11,14 @@ class Home extends React.Component {
 
     render() {
         return (
-            <div className="background black-color--back">
-                <div className="home-button-container">
-                    <NavButtonHome text="Events" path="/events"/>
-                    <NavButtonHome text="Discounts" path="/partnership"/>
+            <div>
+                <div className="background black-color--back">
+                    <div className="home-button-container">
+                        <NavButtonHome text="Events" path="/events"/>
+                        <NavButtonHome text="Discounts" path="/partnership"/>
+                    </div>
                 </div>
+                <Info/>
             </div>
         )
     }
