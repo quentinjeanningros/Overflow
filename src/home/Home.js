@@ -1,6 +1,7 @@
 import React from 'react';
-import Info from './Info.js'
-import './Home.css'
+import Info from './Info.js';
+import {Overflow, Triangle, TriangleOver} from '../assets/svg-react/index.js';
+import './Home.css';
 
 class Home extends React.Component {
     constructor(props) {
@@ -17,6 +18,9 @@ class Home extends React.Component {
                         <NavButtonHome text="Events" path="/events"/>
                         <NavButtonHome text="Discounts" path="/partnership"/>
                     </div>
+                    <Triangle className="home-logo-element select-none"/>
+                    <Overflow className="home-logo-element select-none"/>
+                    <TriangleOver className="home-logo-element select-none"/>
                 </div>
                 <Info/>
             </div>

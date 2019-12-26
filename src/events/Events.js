@@ -1,5 +1,6 @@
 import React from 'react';
-import './Events.css'
+import './Events.css';
+import Typing from 'react-typing-animation';
 import {NavigationBar, Link} from '../modules/NavigationBar.js';
 
 class Events extends React.Component {
@@ -16,7 +17,9 @@ class Events extends React.Component {
             <div className="background blue-color--back">
                 <div className="square-title white-color--back"/>
                 <h1 className="page-title white-color select-none">Events</h1>
-                <h2 id="background-text-event">{backgroundText}</h2>
+                <Typing hideCursor={true} speed={75} startDelay={500}>
+                    <h2 id="background-text-event">{backgroundText}</h2>
+                </Typing>
                 <NavigationBar color="black-color" triggerColor="white-color" links={this.linkedPages}/>
             </div>
         )

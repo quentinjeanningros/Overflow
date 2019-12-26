@@ -1,0 +1,84 @@
+.info-contacts {
+    display: flex;
+    justify-content: space-between;
+    margin-left:  7vw;
+    margin-right: 14vw;
+    position: relative;
+    height: 5vh;
+}
+
+.info-slogan--container {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.info-slogan--text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 7vw;
+}
+
+.info-slogan--title {
+    font-size: 10.5vw;
+}
+
+.info-slogan--text__adjustement {
+    margin-top: -1vh;
+}
+
+.info-contacts-title--container {
+    margin-left:  5vw;
+    justify-content: left;
+    display: flex;
+    margin-bottom: 1vh;
+}
+
+.info-contacts-title--square {
+    width: 1.5vw;
+    height: 1.5vw;
+}
+
+.info-contacts-title--text {
+    margin-left:  0.25vw;
+    font-family: 'Roboto Slab', sans-serif;
+    font-size: 4.5vw;
+    font-weight: 700;
+    margin-top: 0.5vh;
+}
+
+.info-role {
+    transition: all 0.1s ease-out 0.1s;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.75vw;
+    font-weight: 700;
+}
+
+.info-mail {
+    transition: all 0.1s ease-out 0.1s;
+    font-family: 'Roboto Slab', sans-serif;
+    font-size: 1vw;
+    font-weight: 700;
+    margin-top: 0vw;
+}
+
+.info-role--hover {
+    transition: all 0.1s ease-out 0.1s;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1vw;
+    font-weight: 700;
+}
+
+.info-mail--hover {
+    transition: all 0.1s ease-out 0.1s;
+    font-family: 'Roboto Slab', sans-serif;
+    font-size: 1.75vw;
+    font-weight: 700;
+    margin-top: 0vw;
+}
+
+.info-footer {
+    position: absolute;
+    bottom: 5vh;
+    width: 100vw;
+}
