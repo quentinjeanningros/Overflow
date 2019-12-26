@@ -16,9 +16,9 @@ class Events extends React.Component {
         return (
             <div className="background blue-color--back">
                 <div className="square-title white-color--back"/>
-                <h1 className="page-title white-color select-none">Events</h1>
+                <h1 className="page-title white-color select-none font-second">Events</h1>
                 <Typing hideCursor={true} speed={75} startDelay={500}>
-                    <h2 id="background-text-event">{backgroundText}</h2>
+                    <h2 id="background-text-event" className="font-first">{backgroundText}</h2>
                 </Typing>
                 <NavigationBar color="black-color" triggerColor="white-color" links={this.linkedPages}/>
             </div>

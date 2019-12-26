@@ -21,7 +21,7 @@ class Partnership extends React.Component {
         return (
             <div className="background white-color--back">
                 <div className="square-title black-color--back"/>
-                <h1 className="page-title black-color select-none">Partnership</h1>
+                <h1 className="page-title font-second black-color select-none">Partnership</h1>
                 <NavigationBar color="black-color" triggerColor="blue-color" links={this.linkedPages}/>
                 <PartnerCarrousel partners={this.partners}/>
             </div>

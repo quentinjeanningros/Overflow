@@ -11,14 +11,14 @@ class Info extends React.Component {
     render() {
         return (
             <div className="background white-color--back">
-                <div className="info-slogan--container">
+                <div className="info-slogan--container font-first">
                     <h1 className="black-color info-slogan--text">A <span className="info-slogan--title blue-color">Platypus</span></h1>
                     <h1 className="black-color info-slogan--text info-slogan--text__adjustement">to rule them all</h1>
                 </div>
                 <div className="info-footer">
                     <div className="info-contacts-title--container">
                         <div className="info-contacts-title--square black-color--back"/>
-                        <h2 className="info-contacts-title--text black-color" >Contact</h2>
+                        <h2 className="info-contacts-title--text black-color font-second" >Contact</h2>
                     </div>
                     <div className="info-contacts">
                         <Contact role="Director" mail="jules.klakosz@epitech.eu"/>
@@ -49,8 +49,8 @@ class Contact extends React.Component {
     }
 
     render() {
-        let classRole = "info-role"
-        let classMail = "info-mail"
+        let classRole = "font-first info-role"
+        let classMail = "font-second info-mail"
         if (this.state.hover) {
             classRole += "--hover black-color"
             classMail += "--hover blue-color"

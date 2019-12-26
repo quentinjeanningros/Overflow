@@ -15,7 +15,6 @@
 }
 
 .info-slogan--text {
-    font-family: 'Roboto', sans-serif;
     font-size: 7vw;
 }
 
@@ -41,22 +40,17 @@
 
 .info-contacts-title--text {
     margin-left:  0.25vw;
-    font-family: 'Roboto Slab', sans-serif;
     font-size: 4.5vw;
-    font-weight: 700;
     margin-top: 0.5vh;
 }
 
 .info-role {
     transition: all 0.1s ease-out 0.1s;
-    font-family: 'Roboto', sans-serif;
     font-size: 1.75vw;
-    font-weight: 700;
 }
 
 .info-mail {
     transition: all 0.1s ease-out 0.1s;
-    font-family: 'Roboto Slab', sans-serif;
     font-size: 1vw;
     font-weight: 700;
     margin-top: 0vw;
@@ -64,16 +58,13 @@
 
 .info-role--hover {
     transition: all 0.1s ease-out 0.1s;
-    font-family: 'Roboto', sans-serif;
     font-size: 1vw;
     font-weight: 700;
 }
 
 .info-mail--hover {
     transition: all 0.1s ease-out 0.1s;
-    font-family: 'Roboto Slab', sans-serif;
     font-size: 1.75vw;
-    font-weight: 700;
     margin-top: 0vw;
 }
 

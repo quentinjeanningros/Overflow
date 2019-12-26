@@ -60,11 +60,11 @@ class NavButtonHome extends React.Component {
                 onClick={this.clicked}>
                 <div className="nav-button-home__marging">
                     <div className="blue-color--back nav-button-home--square"/>
-                    <h3 className="blue-color select-none nav-button-home--text">{this.text}</h3>
+                    <h3 className="blue-color select-none nav-button-home--text font-first">{this.text}</h3>
                 </div>
                 <div className={classContainer}>
                     <div className="white-color--back nav-button-home--square"/>
-                    <h3 className="white-color select-none nav-button-home--text">{this.text}</h3>
+                    <h3 className="white-color select-none nav-button-home--text font-first">{this.text}</h3>
                 </div>
             </div>
         )

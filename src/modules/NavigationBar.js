@@ -63,7 +63,7 @@ class Page extends React.Component {
 
     render() {
         let classSquare = "navigation-bar__link-square"
-        let classText = "select-none navigation-bar__link-text"
+        let classText = "select-none font-second navigation-bar__link-text"
         if (this.state.hover) {
             classSquare += "--hover " + this.triggerColor + "--back"
             classText += "--hover " + this.triggerColor
