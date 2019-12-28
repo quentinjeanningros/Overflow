@@ -37,12 +37,15 @@
 }
 
 .home-logo-element--name {
-    position: absolute;
-    width: 45vw;
-    top: 18.5vh;
-    left: 15vw;
-    top: 50%;
-    transform: translateY(-50%);
+  position: absolute;
+  width: 45vw;
+  top: 18.5vh;
+  left: 15vw;
+  top: 50%;
+  animation-name: home-logo-element--name__floating;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
 }
 
 .home-logo-element--triangle {
@@ -50,4 +53,20 @@
   width: 39.1vw;
   top: 50%;
   transform: translateY(-47.5%);
+  animation-name: home-logo-element--triangle__floating;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes home-logo-element--name__floating {
+  from { transform: translate(0,  -48%); }
+  65%  { transform: translate(0, -53%); }
+  to   { transform: translate(0, -48%); }
+}
+
+@keyframes home-logo-element--triangle__floating {
+  from { transform: translate(0,  -55%); }
+  40%  { transform: translate(0, -50%); }
+  to   { transform: translate(0, -55%); }
 }
