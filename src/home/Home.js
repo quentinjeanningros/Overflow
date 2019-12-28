@@ -27,7 +27,7 @@ function pxTOvw(value) {
 class Home extends React.Component {
     constructor(props) {
         super(props);
-        this.startX = 22;
+        this.startX = 23;
         this.state = {
             drag: {x: vwTOpx(this.startX)},
         }

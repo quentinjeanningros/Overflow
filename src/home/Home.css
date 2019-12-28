@@ -66,7 +66,7 @@
 }
 
 @keyframes home-logo-element--triangle__floating {
-  from { transform: translate(0,  -55%); }
-  40%  { transform: translate(0, -50%); }
-  to   { transform: translate(0, -55%); }
+  from { transform: translate(0,  -53%); }
+  45%  { transform: translate(0, -48%); }
+  to   { transform: translate(0, -53%); }
 }
