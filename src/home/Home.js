@@ -1,26 +1,87 @@
 import React from 'react';
 import Info from './Info.js';
+import anime from 'animejs/lib/anime.es.js';
 import {Overflow, Triangle, TriangleOver} from '../assets/svg-react/index.js';
 import './Home.css';
+
+function vwTOpx(value) {
+    var w = window,
+        d = document,
+        e = d.documentElement,
+        g = d.getElementsByTagName('body')[0],
+        x = w.innerWidth || e.clientWidth || g.clientWidth;
+    var result = (x*value)/100;
+    return result;
+  }
+
+function pxTOvw(value) {
+    var w = window,
+        d = document,
+        e = d.documentElement,
+        g = d.getElementsByTagName('body')[0],
+        x = w.innerWidth || e.clientWidth || g.clientWidth;
+    var result = (100*value)/x;
+    return result;
+  }
 
 class Home extends React.Component {
     constructor(props) {
         super(props);
+        this.startX = 22;
         this.state = {
+            drag: {x: vwTOpx(this.startX)},
+        }
+        this.isDrag = false;
+        this.clickPoint = 0;
+
+        this.onStart = this.onStart.bind(this);
+        this.onDrag = this.onDrag.bind(this);
+        this.onEnd = this.onEnd.bind(this);
+    }
+
+    onStart(e) {
+        if(!this.isDrag) {
+            this.clickPoint = e.pageX;
+            this.isDrag = true;
         }
     }
+
+    onDrag(e) {
+        if(this.isDrag)
+            this.setState({drag: {x: vwTOpx(this.startX) + (e.pageX - this.clickPoint) / 2}})
+    }
+
+    onEnd() {
+        let {drag} = this.state;
+        if(this.isDrag){
+            let virtualDrag = drag
+            this.isDrag = false
+            anime({
+                targets: virtualDrag,
+                x: vwTOpx(this.startX),
+                easing: 'easeOutElastic',
+                duration: 1000,
+                update: () => {this.setState({drag: {x: virtualDrag.x}})}
+            })
+        }
+    }
+
 
     render() {
         return (
             <div>
                 <div className="background black-color--back">
+                    <Triangle style={{left: pxTOvw(this.state.drag.x) + "vw"}} className="home-logo-element--triangle select-none"/>
                     <div className="home-button-container">
                         <NavButtonHome text="Events" path="/events"/>
                         <NavButtonHome text="Discounts" path="/partnership"/>
                     </div>
-                    <Triangle className="home-logo-element select-none"/>
-                    <Overflow className="home-logo-element select-none"/>
-                    <TriangleOver className="home-logo-element select-none"/>
+                    <Overflow className="home-logo-element--name select-none"/>
+                    <TriangleOver style={{left: pxTOvw(this.state.drag.x) + "vw"}} className="home-logo-element--triangle select-none"
+                    onMouseDown={this.onStart}
+                    onMouseMove={this.onDrag}
+                    onMouseUp={this.onEnd}
+                    onMouseLeave={this.onEnd}/>
                 </div>
                 <Info/>
             </div>
