@@ -1,3 +1,7 @@
+#info-page {
+    overflow: hidden;
+}
+
 .info-contacts {
     display: flex;
     justify-content: space-between;
@@ -44,32 +48,16 @@
     margin-top: 0.5vh;
 }
 
-.info-role {
-    transition: all 0.1s ease-out 0.1s;
-    font-size: 1.75vw;
-}
-
-.info-mail {
-    transition: all 0.1s ease-out 0.1s;
-    font-size: 1vw;
-    font-weight: 700;
-    margin-top: 0vw;
-}
-
-.info-role--hover {
-    transition: all 0.1s ease-out 0.1s;
-    font-size: 1vw;
-    font-weight: 700;
-}
-
-.info-mail--hover {
-    transition: all 0.1s ease-out 0.1s;
-    font-size: 1.75vw;
-    margin-top: 0vw;
-}
-
 .info-footer {
     position: absolute;
     bottom: 5vh;
     width: 100vw;
+}
+
+.info-sticker-bar {
+    position: absolute;
+    overflow: hidden;
+    left: -20vw;
+    top: 10vw;
+    transform: rotate(-55.96deg);
 }

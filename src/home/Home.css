@@ -57,16 +57,17 @@
   animation-duration: 4s;
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
+  cursor: ew-resize;
 }
 
 @keyframes home-logo-element--name__floating {
-  from { transform: translate(0,  -48%); }
-  65%  { transform: translate(0, -53%); }
-  to   { transform: translate(0, -48%); }
+  from { transform: translateY(-48%); }
+  65%  { transform: translateY(-53%); }
+  to   { transform: translateY(-48%); }
 }
 
 @keyframes home-logo-element--triangle__floating {
-  from { transform: translate(0,  -53%); }
-  45%  { transform: translate(0, -48%); }
-  to   { transform: translate(0, -53%); }
+  from { transform: translateY(-53%); }
+  45%  { transform: translateY(-48%); }
+  to   { transform: translateY(-53%); }
 }

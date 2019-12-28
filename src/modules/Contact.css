@@ -1,0 +1,23 @@
+.contact-title {
+    transition: all 0.1s ease-out 0.1s;
+    font-size: 1.75vw;
+}
+
+.contact-info {
+    transition: all 0.1s ease-out 0.1s;
+    font-size: 1vw;
+    font-weight: 700;
+    margin-top: 0vw;
+}
+
+.contact-title--hover {
+    transition: all 0.1s ease-out 0.1s;
+    font-size: 1vw;
+    font-weight: 700;
+}
+
+.contact-info--hover {
+    transition: all 0.1s ease-out 0.1s;
+    font-size: 1.75vw;
+    margin-top: 0vw;
+}

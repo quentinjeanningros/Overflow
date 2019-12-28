@@ -1,0 +1,29 @@
+.scrolling-text--container {
+    overflow: hidden;
+    position: relative;
+    display: flex;
+}
+
+.scrolling-text--text {
+    font-size: 1.5vw;
+    margin-top: 0.5vw;
+    margin-bottom: 0.5vw;
+    margin-left: 1.5vw;
+    margin-right: 1.5vw;
+}
+
+.scrolling-text--animation {
+    animation-name: scrolling-text-animation;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes scrolling-text-animation {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(-100%, 0);
+    }
+}
