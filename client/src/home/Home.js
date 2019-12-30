@@ -68,6 +68,7 @@ class Home extends React.Component {
 
 
     render() {
+        let grab = this.isDrag ? "grabbing" : "grab"
         return (
             <div>
                 <div className="background black-color--back">
@@ -77,7 +78,7 @@ class Home extends React.Component {
                         <NavButtonHome text="Discounts" path="/partnership"/>
                     </div>
                     <Overflow className="home-logo-element--name select-none"/>
-                    <TriangleOver style={{left: pxTOvw(this.state.drag.x) + "vw"}} className="home-logo-element--triangle select-none"
+                    <TriangleOver style={{left: pxTOvw(this.state.drag.x) + "vw", cursor: grab}} className="home-logo-element--triangle select-none"
                     onMouseDown={this.onStart}
                     onMouseMove={this.onDrag}
                     onMouseUp={this.onEnd}
