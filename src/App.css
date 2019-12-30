@@ -39,6 +39,18 @@
     background-color: #000000;
 }
 
+.blue-color--fill {
+    fill: #005FFF;
+}
+
+.white-color--fill {
+    fill: #ffffff;
+}
+
+.black-color-fill {
+    fill: #000000;
+}
+
 .blue-color {
     color: #005FFF;
 }

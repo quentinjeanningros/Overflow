@@ -3,11 +3,80 @@
     position: absolute;
 }
 
+.partnership--arrow {
+    transition: all 0.1s ease-out;
+    height: 5.7vh;
+    top: 82.5%;
+
+}
+
+.partnership--arrow__hover {
+    transition: all 0.1s ease-out;
+    height: 7vh;
+    top: 81.5%;
+}
+
+.arrow__fade-appear {
+    opacity: 0;
+    animation-name: arrow__fade;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+}
+
+.arrow__fade-appear.arrow__fade-appear-active {
+    opacity: 1;
+}
+
+@keyframes arrow__fade {
+    from { opacity: 0; }
+    65%  { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+
+.partnership--arrow__right {
+    position: absolute;
+    left: 62.5%;
+}
+
+.partnership--arrow__right__floating {
+    animation-name: partnership--arrow__right__floating;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes partnership--arrow__right__floating {
+    from { left: 62.5%; }
+    65%  { left: 63.5%; }
+    to   { left: 62.5%; }
+}
+
+.partnership--arrow__left {
+    position: absolute;
+    left: 36%;
+}
+
+.partnership--arrow__left__floating {
+    animation-name: partnership--arrow__left__floating;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes partnership--arrow__left__floating {
+    from { left: 36%; }
+    65%  { left: 35%; }
+    to   { left: 36%; }
+}
+
 .partner-card-focused--text--container {
     display: flex;
     align-items: center;
     margin-left: 0.75vh;
-    margin-top: -2vh;
+    margin-top: -1.7vh;
+    height: 5.5vh;
 }
 
 .partner-card-focused--background {
@@ -15,7 +84,7 @@
     border: 1vh solid #000000;
     height: 50vh;
     width: 35vh;
-    margin-left: 2vw;
+    margin-left: 2.25vw;
     margin-right: 2vw;
     box-shadow: 15px 15px 20px rgba(0, 0, 0, 0.50);
     position: relative;
