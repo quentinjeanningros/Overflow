@@ -19,7 +19,7 @@
 .arrow__fade-appear {
     opacity: 0;
     animation-name: arrow__fade;
-    animation-duration: 2s;
+    animation-duration: 0.5s;
     animation-iteration-count: 1;
     animation-timing-function: linear;
 }
@@ -30,7 +30,6 @@
 
 @keyframes arrow__fade {
     from { opacity: 0; }
-    65%  { opacity: 0; }
     to   { opacity: 1; }
 }
 

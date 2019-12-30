@@ -18,69 +18,101 @@ class PartnerCarrousel extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            hoverLeft: false,
-            hoverRight: false,
         }
-        this.partners = props.partners
+        this.lenght = 5;
+        this.partners = props.partners;
 
-
-        this.toggleHoverLeft = this.toggleHoverLeft.bind(this);
-        this.toggleHoverRight = this.toggleHoverRight.bind(this);
-        this.forward = this.forward.bind(this)
-        this.backward = this.backward.bind(this)
+        this.eventListener = this.eventListener.bind(this);
+        this.forward = this.forward.bind(this);
+        this.backward = this.backward.bind(this);
+        this.moveTo = this.moveTo.bind(this);
     }
 
-    toggleHoverLeft() {
-        this.setState({hoverLeft: !this.state.hoverLeft})
+    componentDidMount() {
+        document.addEventListener('keydown', this.eventListener, false);
     }
 
-    toggleHoverRight() {
-        this.setState({hoverRight: !this.state.hoverRight})
+    componentWillUnmount() {
+        document.removeEventListener('keydown', this.eventListener, false);
+    }
+
+    eventListener(event) {
+        if (event.keyCode === 39)
+            this.forward();
+        if (event.keyCode === 37)
+            this.backward();
     }
 
     forward() {
-        console.log("avant")
+        let id = Math.ceil(this.lenght / 2);
+        this.moveTo(id);
     }
 
     backward() {
-        console.log("arriere")
+        let id = Math.floor(this.lenght / 2) - 1;
+        this.moveTo(id);
+    }
+
+    moveTo(id) {
+        console.log("id: " + id)
     }
 
     render() {
-        let arrowLeftClass
-        let arrowRightClass
-        if (this.state.hoverLeft === true)
-            arrowLeftClass = "blue-color--fill partnership--arrow__hover"
-        else
-            arrowLeftClass = "black-color--fill partnership--arrow"
-        if (this.state.hoverRight === true)
-            arrowRightClass = "blue-color--fill partnership--arrow__hover"
-        else
-            arrowRightClass = "black-color--fill partnership--arrow"
         let listoDisplay = []
-        for (let i = 0; i < 5 && i < this.partners.length; ++i) {
+        for (let i = 0; i < this.lenght && i < this.partners.length; ++i) {
             if (i === 2) {
                 listoDisplay.push(<PartnerCardFocused name={this.partners[i].name} key={i}/>);
             } else {
-                listoDisplay.push(<PartnerCard name={this.partners[i].name} id={i} key={i}/>);
+                listoDisplay.push(<PartnerCard name={this.partners[i].name} id={i} callback={this.moveTo} key={i}/>);
             }
         }
         return (
             <div className="partner-carrousel--container">
                 <CSSTransition in={true} appear={true} timeout={3000} classNames="arrow__fade">
                     <div>
-                        <ArrowLeft className={"partnership--arrow__left partnership--arrow__left__floating " + arrowLeftClass}
-                            onClick={this.backward}
-                            onMouseEnter={this.toggleHoverLeft}
-                            onMouseLeave={this.toggleHoverLeft}/>
-                        <ArrowRight className={"partnership--arrow__right partnership--arrow__right__floating " + arrowRightClass}
-                            onClick={this.forward}
-                            onMouseEnter={this.toggleHoverRight}
-                            onMouseLeave={this.toggleHoverRight}/>
+                        <Arrow image={ArrowLeft} class="button partnership--arrow__left partnership--arrow__left__floating" callback={this.backward}/>
+                        <Arrow image={ArrowRight} class="button partnership--arrow__right partnership--arrow__right__floating" callback={this.forward}/>
                     </div>
                 </CSSTransition>
                 {listoDisplay}
             </div>
+        )
+    }
+}
+
+class Arrow extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            hover: false
+        }
+        this.image = props.image;
+        this.callback = props.callback;
+        this.class = props.class;
+        this.toggleHover = this.toggleHover.bind(this)
+
+        this.click = this.click.bind(this)
+    }
+
+    click() {
+        this.callback()
+    }
+
+    toggleHover() {
+        this.setState({hover: !this.state.hover})
+    }
+
+    render() {
+        let arrowClass
+        if (this.state.hover === true)
+            arrowClass = " blue-color--fill partnership--arrow__hover"
+        else
+            arrowClass = " black-color--fill partnership--arrow"
+        return (
+            <this.image className={this.class + arrowClass}
+                onClick={this.click}
+                onMouseEnter={this.toggleHover}
+                onMouseLeave={this.toggleHover}/>
         )
     }
 }
@@ -116,11 +148,18 @@ class PartnerCard extends React.Component {
         }
         this.name = props.name
         this.id = props.id
+        this.callback = props.callback;
+
+        this.click = this.click.bind(this)
+    }
+
+    click() {
+        this.callback(this.id)
     }
 
     render() {
         return (
-            <div className="partner-card--background black-color--back">
+            <div className="partner-card--background black-color--back button" onClick={this.click}>
                 <div className="partner-card--square white-color--back"/>
                 <h1 className="partner-card--text white-color font-first select-none">{this.name}</h1>
             </div>

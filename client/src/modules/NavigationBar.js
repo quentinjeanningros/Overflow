@@ -73,7 +73,7 @@ class Page extends React.Component {
             classText += " " + this.color
         }
         return (
-            <div className="navigation-bar__link-container "
+            <div className="navigation-bar__link-container button "
                 onMouseEnter={this.toggleHover}
                 onMouseLeave={this.toggleHover}
                 onClick={this.clicked}>

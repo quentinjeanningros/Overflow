@@ -115,7 +115,7 @@ class NavButtonHome extends React.Component {
         if (this.state.hover)
             classContainer += "--hover "
         return (
-            <div className="nav-button-home-container"
+            <div className="nav-button-home-container button"
                 onMouseEnter={this.toggleHover}
                 onMouseLeave={this.toggleHover}
                 onClick={this.clicked}>
