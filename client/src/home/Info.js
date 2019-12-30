@@ -1,7 +1,7 @@
 import React from 'react';
 import './Info.css';
-import Contact from '../modules/Contact.js'
-import ScrollingText from '../modules/ScrollingText.js'
+import Contact from '../modules/Contact.js';
+import ScrollingText from '../modules/ScrollingText.js';
 
 class Info extends React.Component {
     constructor(props) {

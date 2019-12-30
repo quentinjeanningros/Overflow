@@ -4,7 +4,6 @@ import Typing from 'react-typing-animation';
 import {ArrowLeft, ArrowRight} from '../assets/svg-react/index.js';
 import {CSSTransition} from 'react-transition-group';
 
-
 class Partner {
     constructor(name, epitech, iseg, eart, image) {
         this.name = name
