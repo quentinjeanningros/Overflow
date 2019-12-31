@@ -19,7 +19,7 @@ class PartnerCarrousel extends React.Component {
         super(props);
         this.state = {
         }
-        this.lenght = 5;
+        this.lenght = 7;
         this.partners = props.partners;
 
         this.eventListener = this.eventListener.bind(this);
@@ -59,22 +59,23 @@ class PartnerCarrousel extends React.Component {
 
     render() {
         let listoDisplay = []
-        for (let i = 0; i < this.lenght && i < this.partners.length; ++i) {
-            if (i === 2) {
-                listoDisplay.push(<PartnerCardFocused name={this.partners[i].name} key={i}/>);
-            } else {
-                listoDisplay.push(<PartnerCard name={this.partners[i].name} id={i} callback={this.moveTo} key={i}/>);
-            }
+        for (let i = 0, n = 0; i < this.lenght; ++i, ++n) {
+            if (i === Math.floor(this.lenght / 2))
+                listoDisplay.push(<PartnerCardFocused name={this.partners[n].name} key={i}/>);
+            else
+                listoDisplay.push(<PartnerCard name={this.partners[n].name} id={i} callback={this.moveTo} key={i}/>);
+            if (n + 1 >= this.partners.length)
+                n = 0
         }
         return (
             <div className="partner-carrousel--container">
+                {listoDisplay}
                 <CSSTransition in={true} appear={true} timeout={3000} classNames="arrow__fade">
                     <div>
                         <Arrow image={ArrowLeft} class="button partnership--arrow__left partnership--arrow__left__floating" callback={this.backward}/>
                         <Arrow image={ArrowRight} class="button partnership--arrow__right partnership--arrow__right__floating" callback={this.forward}/>
                     </div>
                 </CSSTransition>
-                {listoDisplay}
             </div>
         )
     }
@@ -107,7 +108,7 @@ class Arrow extends React.Component {
         if (this.state.hover === true)
             arrowClass = " blue-color--fill partnership--arrow__hover"
         else
-            arrowClass = " black-color--fill partnership--arrow"
+            arrowClass = " white-color--fill partnership--arrow"
         return (
             <this.image className={this.class + arrowClass}
                 onClick={this.click}
@@ -127,7 +128,7 @@ class PartnerCardFocused extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="partner-card-focused--container">
                 <div className="partner-card-focused--text--container">
                     <div className="partner-card-focused--square blue-color--back"/>
                     <Typing hideCursor={true} speed={50} startDelay={500}>
