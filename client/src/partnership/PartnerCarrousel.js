@@ -1,8 +1,8 @@
 import React from 'react';
-import './PartnerCarrousel.css'
-import Typing from 'react-typing-animation';
+import './PartnerCarrousel.css';
 import {ArrowLeft, ArrowRight} from '../assets/svg-react/index.js';
 import {CSSTransition} from 'react-transition-group';
+import Typing from '../modules/Typing.js';
 
 class Partner {
     constructor(name, epitech, iseg, eart, image) {
@@ -18,6 +18,7 @@ class PartnerCarrousel extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            list: props.partners,
         }
         this.lenght = 7;
         this.partners = props.partners;
@@ -26,6 +27,8 @@ class PartnerCarrousel extends React.Component {
         this.forward = this.forward.bind(this);
         this.backward = this.backward.bind(this);
         this.moveTo = this.moveTo.bind(this);
+        this.generateItems = this.generateItems.bind(this);
+
     }
 
     componentDidMount() {
@@ -54,22 +57,36 @@ class PartnerCarrousel extends React.Component {
     }
 
     moveTo(id) {
-        console.log("id: " + id)
+        const {list} = this.state;
+        let n = Math.floor(this.lenght / 2) - id;
+        if (n < 0) {
+            n = n * -1
+            for (let i = 0; i < n; ++i)
+                list.push(list.shift())
+        } else if (n > 0) {
+            for (let i = 0; i < n; ++i)
+                list.unshift(list.pop())
+        }
+        this.setState({list: list})
+    }
+
+    generateItems() {
+        let listoDisplay = [];
+        for (let i = 0, n = 0; i < this.lenght; ++i, ++n) {
+            if (i === Math.floor(this.lenght / 2))
+                listoDisplay.push(<PartnerCardFocused name={this.state.list[n].name} key={i}/>);
+            else
+                listoDisplay.push(<PartnerCard name={this.state.list[n].name} id={n} callback={this.moveTo} key={i}/>);
+            if (n + 1 >= this.partners.length)
+                n = - 1;
+        };
+        return (listoDisplay);
     }
 
     render() {
-        let listoDisplay = []
-        for (let i = 0, n = 0; i < this.lenght; ++i, ++n) {
-            if (i === Math.floor(this.lenght / 2))
-                listoDisplay.push(<PartnerCardFocused name={this.partners[n].name} key={i}/>);
-            else
-                listoDisplay.push(<PartnerCard name={this.partners[n].name} id={i} callback={this.moveTo} key={i}/>);
-            if (n + 1 >= this.partners.length)
-                n = 0
-        }
         return (
             <div className="partner-carrousel--container">
-                {listoDisplay}
+                {this.generateItems()}
                 <CSSTransition in={true} appear={true} timeout={3000} classNames="arrow__fade">
                     <div>
                         <Arrow image={ArrowLeft} class="button partnership--arrow__left partnership--arrow__left__floating" callback={this.backward}/>
@@ -123,7 +140,6 @@ class PartnerCardFocused extends React.Component {
         super(props);
         this.state = {
         }
-        this.name = props.name;
     }
 
     render() {
@@ -131,9 +147,7 @@ class PartnerCardFocused extends React.Component {
             <div className="partner-card-focused--container">
                 <div className="partner-card-focused--text--container">
                     <div className="partner-card-focused--square blue-color--back"/>
-                    <Typing hideCursor={true} speed={50} startDelay={500}>
-                        <h1 className="partner-card-focused--text black-color font-first select-none">{this.name}</h1>
-                    </Typing>
+                    <Typing text={this.props.name} startTime={500} spacetime={80} class="partner-card-focused--text black-color font-first select-none " />
                 </div>
                 <div className="partner-card-focused--background white-color--back">
                 </div>
@@ -147,11 +161,10 @@ class PartnerCard extends React.Component {
         super(props);
         this.state = {
         }
-        this.name = props.name
-        this.id = props.id
+        this.id = props.id;
         this.callback = props.callback;
 
-        this.click = this.click.bind(this)
+        this.click = this.click.bind(this);
     }
 
     click() {
@@ -162,7 +175,7 @@ class PartnerCard extends React.Component {
         return (
             <div className="partner-card--background black-color--back button" onClick={this.click}>
                 <div className="partner-card--square white-color--back"/>
-                <h1 className="partner-card--text white-color font-first select-none">{this.name}</h1>
+                <h1 className="partner-card--text white-color font-first select-none">{this.props.name}</h1>
             </div>
         )
     }

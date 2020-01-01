@@ -6,19 +6,19 @@
 .partnership--arrow {
     transition: all 0.1s ease-out;
     height: 5.7vh;
-    top: 29.5%;
+    top: 50%;
 }
 
 .partnership--arrow__hover {
     transition: all 0.1s ease-out;
     height: 7vh;
-    top: 29.5%;
+    top: 50%;
 }
 
 .arrow__fade-appear {
     opacity: 0;
     animation-name: arrow__fade;
-    animation-duration: 0.5s;
+    animation-duration: 2s;
     animation-iteration-count: 1;
     animation-timing-function: linear;
 }
@@ -29,6 +29,7 @@
 
 @keyframes arrow__fade {
     from { opacity: 0; }
+    50% { opacity: 0; }
     to   { opacity: 1; }
 }
 

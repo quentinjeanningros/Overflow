@@ -27,52 +27,6 @@
     top: 1vw;
 }
 
-.blue-color--back {
-    background-color: #005FFF;
-}
-
-.white-color--back {
-    background-color: #ffffff;
-}
-
-.black-color--back {
-    background-color: #000000;
-}
-
-.blue-color--fill {
-    fill: #005FFF;
-}
-
-.white-color--fill {
-    fill: #ffffff;
-}
-
-.black-color-fill {
-    fill: #000000;
-}
-
-.blue-color {
-    color: #005FFF;
-}
-
-.white-color {
-    color: #ffffff;
-}
-
-.black-color {
-    color: #000000;
-}
-
-.font-first {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 900;
-}
-
-.font-second {
-    font-family: 'Roboto Slab', sans-serif;
-    font-weight: 700;
-}
-
 .select-none {
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -82,4 +36,20 @@
 
 .button {
     cursor: pointer;
+}
+
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+::-webkit-scrollbar-track {
+    background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ffffff;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #005FFF;
 }

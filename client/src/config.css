@@ -1,0 +1,45 @@
+.blue-color--back {
+    background-color: #005FFF;
+}
+
+.white-color--back {
+    background-color: #ffffff;
+}
+
+.black-color--back {
+    background-color: #000000;
+}
+
+.blue-color--fill {
+    fill: #005FFF;
+}
+
+.white-color--fill {
+    fill: #ffffff;
+}
+
+.black-color-fill {
+    fill: #000000;
+}
+
+.blue-color {
+    color: #005FFF;
+}
+
+.white-color {
+    color: #ffffff;
+}
+
+.black-color {
+    color: #000000;
+}
+
+.font-first {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+}
+
+.font-second {
+    font-family: 'Roboto Slab', sans-serif;
+    font-weight: 700;
+}

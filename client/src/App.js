@@ -4,6 +4,8 @@ import Events from './events/Events'
 import Home from './home/Home'
 import Partnership from './partnership/Partnership'
 import './App.css'
+import './config.css'
+
 
 function App() {
   return (
