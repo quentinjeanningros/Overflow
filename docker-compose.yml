@@ -1,0 +1,40 @@
+version: '3'
+services:
+  database:
+    build:
+      ./database
+    environment:
+      - MYSQL_USER=${OVERFLOW_SQL_USER:-overflow}
+      - MYSQL_PASSWORD=${OVERFLOW_SQL_PASSWORD:-overflowpassword}
+      - MYSQL_DATABASE=${OVERFLOW_SQL_DATABASE:-overflow}
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
+    networks:
+      - app
+    ports:
+      - '3306:3306'
+
+  server:
+    build:
+      ./server
+    environment:
+      - HOST=80
+      - MYSQL_USER=${OVERFLOW_SQL_USER:-overflow}
+      - MYSQL_PASSWORD=${OVERFLOW_SQL_PASSWORD:-overflowpassword}
+      - MYSQL_DATABASE=${OVERFLOW_SQL_DATABASE:-overflow}
+      - MYSQL_HOST=${OVERFLOW_SQL_HOST:-database}
+      - JWT_SECRET=${OVERFLOW_JWT_SECRET:-overflowjwtsecret}
+    networks:
+      - app
+    ports:
+      - '8080:80'
+
+  client:
+    build:
+      ./client
+    environment:
+      - REACT_APP_API_ADDRESS=${OVERFLOW_API_ADDRESS:-127.0.0.1}
+    ports:
+      - '3000:80'
+
+networks:
+  app:
