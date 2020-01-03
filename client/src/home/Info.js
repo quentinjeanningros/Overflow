@@ -2,12 +2,28 @@ import React from 'react';
 import './Info.css';
 import Contact from '../modules/Contact.js';
 import ScrollingText from '../modules/ScrollingText.js';
+import config from "../config";
 
 class Info extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            loading: false,
+            error: null,
+            contacts: []
         }
+    }
+
+    componentDidMount() {
+        this.setState({loading: true});
+        fetch(config.API_URL + "/contacts", {method: "GET"})
+            .then(response => response.json())
+            .then(result => {
+                this.setState({loading: false, error: null, contacts: result});
+            })
+            .catch(e => {
+                this.setState({loading: false, error: e, contacts: []});
+            });
     }
 
     render() {
@@ -31,10 +47,7 @@ class Info extends React.Component {
                         <h2 className="info-contacts-title--text black-color font-second" >Contact</h2>
                     </div>
                     <div className="info-contacts">
-                        <Contact role="Director" mail="jules.klakosz@epitech.eu"/>
-                        <Contact role="Second" mail="kevin.spegt@epitech.eu"/>
-                        <Contact role="Designer" mail="quentin.jeanningros@epitech.eu"/>
-                        <Contact role="Treasurer" mail="colin.cleary@epitech.eu"/>
+                        {this.state.contacts.map((contact, i) => <Contact role={contact.title} mail={contact.email} key={i}/>)}
                     </div>
                 </div>
             </div>

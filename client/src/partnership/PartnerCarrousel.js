@@ -19,9 +19,9 @@ class PartnerCarrousel extends React.Component {
         super(props);
         this.state = {
             list: props.partners,
-        }
-        this.lenght = 7;
-        this.midFloor = Math.floor(this.lenght / 2)
+        };
+        this.lenght = this.props.partners.length;
+        this.midFloor = Math.floor(this.lenght / 2);
         this.partners = props.partners;
         this.setter = props.setter;
 
@@ -83,7 +83,7 @@ class PartnerCarrousel extends React.Component {
                 listoDisplay.push(<PartnerCard name={this.state.list[n].name} id={n} callback={this.moveTo} key={i}/>);
             if (n + 1 >= this.partners.length)
                 n = - 1;
-        };
+        }
         return (listoDisplay);
     }
 
