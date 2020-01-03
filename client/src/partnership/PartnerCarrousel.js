@@ -21,7 +21,9 @@ class PartnerCarrousel extends React.Component {
             list: props.partners,
         }
         this.lenght = 7;
+        this.midFloor = Math.floor(this.lenght / 2)
         this.partners = props.partners;
+        this.setter = props.setter;
 
         this.eventListener = this.eventListener.bind(this);
         this.forward = this.forward.bind(this);
@@ -33,6 +35,7 @@ class PartnerCarrousel extends React.Component {
 
     componentDidMount() {
         document.addEventListener('keydown', this.eventListener, false);
+        this.setter(this.state.list[this.midFloor]);
     }
 
     componentWillUnmount() {
@@ -52,13 +55,13 @@ class PartnerCarrousel extends React.Component {
     }
 
     backward() {
-        let id = Math.floor(this.lenght / 2) - 1;
+        let id = this.midFloor - 1;
         this.moveTo(id);
     }
 
     moveTo(id) {
         const {list} = this.state;
-        let n = Math.floor(this.lenght / 2) - id;
+        let n = this.midFloor - id;
         if (n < 0) {
             n = n * -1
             for (let i = 0; i < n; ++i)
@@ -67,13 +70,14 @@ class PartnerCarrousel extends React.Component {
             for (let i = 0; i < n; ++i)
                 list.unshift(list.pop())
         }
-        this.setState({list: list})
+        this.setState({list: list});
+        this.setter(this.state.list[this.midFloor]);
     }
 
     generateItems() {
         let listoDisplay = [];
         for (let i = 0, n = 0; i < this.lenght; ++i, ++n) {
-            if (i === Math.floor(this.lenght / 2))
+            if (i === this.midFloor)
                 listoDisplay.push(<PartnerCardFocused name={this.state.list[n].name} key={i}/>);
             else
                 listoDisplay.push(<PartnerCard name={this.state.list[n].name} id={n} callback={this.moveTo} key={i}/>);

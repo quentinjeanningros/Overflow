@@ -7,4 +7,22 @@
     justify-content: center;
     width: 100%;
     margin-top: 11.5vw;
+    height: 45vh;
+    z-index: 1;
+    position: relative;
+}
+
+.focused-text {
+    opacity: 10%;
+    text-align: center;
+    font-size: 15vw;
+    white-space: nowrap;
+}
+
+.focused-text--container {
+    width: 98vw;
+    z-index: 0;
+    position: relative;
+    display: flex;
+    justify-content: center;
 }
