@@ -23,6 +23,12 @@ services:
       - MYSQL_DATABASE=${OVERFLOW_SQL_DATABASE:-overflow}
       - MYSQL_HOST=${OVERFLOW_SQL_HOST:-database}
       - JWT_SECRET=${OVERFLOW_JWT_SECRET:-overflowjwtsecret}
+      - USE_GCP=${OVERFLOW_USE_GCP:-FALSE}
+      - URL_SERVER=${OVERFLOW_API_URL_SERVER:-http://127.0.0.1:8080}
+      - FILES_FOLDER=${OVERFLOW_API_FILES_FOLDER:-./files/}
+      - GOOGLE_CLOUD_PROJECT_ID=${OVERFLOW_GOOGLE_CLOUD_PROJECT_ID:-bde-overflow}
+      - GOOGLE_CLOUD_KEYFILE=${OVERFLOW_GOOGLE_CLOUD_KEYFILE:-bde-overflow.json}
+      - BUCKET_NAME=${OVERFLOW_BUCKET_NAME:-bucket-bde-overflow}
     networks:
       - app
     ports:
