@@ -10,8 +10,8 @@ const bodyParser = require('body-parser');
 const db = require('./src/database');
 const auth = require('./src/auth');
 const contacts = require('./src/contacts');
-//const partnerships = require('./src/partnerships');
-//const events = require('./src/events');
+const partnerships = require('./src/partnerships');
+const events = require('./src/events');
 
 // Creating server router
 const app = express();
@@ -41,7 +41,7 @@ app.get('/contacts', db.middleware, contacts.getHandler);
 app.post('/contacts', db.middleware, auth.middleware, contacts.postHandler);
 app.patch('/contacts', db.middleware, auth.middleware, contacts.patchHandler);
 app.delete('/contacts', db.middleware, auth.middleware, contacts.deleteHandler);
-/*
+
 app.get('/partnerships', db.middleware, partnerships.getHandler);
 app.post('/partnerships', db.middleware, auth.middleware, partnerships.postHandler);
 app.patch('/partnerships', db.middleware, auth.middleware, partnerships.patchHandler);
@@ -51,7 +51,6 @@ app.get('/events', db.middleware, events.getHandler);
 app.post('/events', db.middleware, auth.middleware, events.postHandler);
 app.patch('/events', db.middleware, auth.middleware, events.patchHandler);
 app.delete('/events', db.middleware, auth.middleware, events.deleteHandler);
-*/
 
 // Invalid route management
 app.use(function (req, res) {
