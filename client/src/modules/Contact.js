@@ -29,7 +29,7 @@ class Contact extends React.Component {
             classMail += " black-color"
         }
         return (
-            <div onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover}>
+            <div onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover} className="contact--container">
                 <h3 className={classRole}>{this.role}</h3>
                 <h4 className={classMail}>{this.mail}</h4>
             </div>

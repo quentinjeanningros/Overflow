@@ -2,13 +2,12 @@
     overflow: hidden;
 }
 
-.info-contacts {
+.info-contacts-line {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     margin-left:  7vw;
     margin-right: 14vw;
     position: relative;
-    height: 5vh;
 }
 
 .info-slogan--container {

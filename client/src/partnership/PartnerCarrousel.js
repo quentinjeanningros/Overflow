@@ -20,8 +20,7 @@ class PartnerCarrousel extends React.Component {
         this.state = {
             list: props.partners,
         };
-        this.lenght = this.props.partners.length;
-        this.midFloor = Math.floor(this.lenght / 2);
+        this.length = this.props.length;
         this.partners = props.partners;
         this.setter = props.setter;
 
@@ -35,7 +34,7 @@ class PartnerCarrousel extends React.Component {
 
     componentDidMount() {
         document.addEventListener('keydown', this.eventListener, false);
-        this.setter(this.state.list[this.midFloor]);
+        this.setter(this.state.list[Math.floor(this.partners.length / 2)]);
     }
 
     componentWillUnmount() {
@@ -50,18 +49,18 @@ class PartnerCarrousel extends React.Component {
     }
 
     forward() {
-        let id = Math.ceil(this.lenght / 2);
+        let id = Math.ceil(this.length / 2);
         this.moveTo(id);
     }
 
     backward() {
-        let id = this.midFloor - 1;
+        let id = Math.floor(this.length / 2) - 1;
         this.moveTo(id);
     }
 
     moveTo(id) {
         const {list} = this.state;
-        let n = this.midFloor - id;
+        let n = Math.floor(this.length / 2) - id;
         if (n < 0) {
             n = n * -1
             for (let i = 0; i < n; ++i)
@@ -70,20 +69,19 @@ class PartnerCarrousel extends React.Component {
             for (let i = 0; i < n; ++i)
                 list.unshift(list.pop())
         }
-        this.setState({list: list});
-        this.setter(this.state.list[this.midFloor]);
+        this.setter(this.state.list[Math.floor(this.state.list.length / 2)]);
     }
 
     generateItems() {
         let listoDisplay = [];
-        for (let i = 0, n = 0; i < this.lenght; ++i, ++n) {
-            if (i === this.midFloor)
+        for (let i = 0, n = 0; i < this.length; ++i, ++n) {
+            if (i === Math.floor(this.length / 2))
                 listoDisplay.push(<PartnerCardFocused name={this.state.list[n].name} key={i}/>);
             else
                 listoDisplay.push(<PartnerCard name={this.state.list[n].name} id={n} callback={this.moveTo} key={i}/>);
             if (n + 1 >= this.partners.length)
                 n = - 1;
-        }
+        };
         return (listoDisplay);
     }
 

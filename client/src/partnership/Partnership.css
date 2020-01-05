@@ -7,7 +7,7 @@
     justify-content: center;
     width: 100%;
     margin-top: 11.5vw;
-    height: 45vh;
+    height: 42.5vh;
     z-index: 1;
     position: relative;
 }
@@ -20,7 +20,6 @@
 }
 
 .focused-text--container {
-    width: 98vw;
     z-index: 0;
     position: relative;
     display: flex;

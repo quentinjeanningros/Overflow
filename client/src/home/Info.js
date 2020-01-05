@@ -27,6 +27,13 @@ class Info extends React.Component {
     }
 
     render() {
+        let contactDisplay = []
+        for (let i = 0, count = 0; i < this.state.contacts.length;) {
+            let line = [];
+            for (let n = 0; n < 4 && i < this.state.contacts.length; ++n, ++i)
+                line.push(<Contact role={this.state.contact[i].title} mail={this.state.contact[i].email} key={n}/>);
+            contactDisplay.push(<div className="info-contacts-line" key={count++}>{line}</div>);
+        }
         return (
             <div className="background white-color--back" id="info-page">
                 <div className="info-sticker-bar">
@@ -46,9 +53,7 @@ class Info extends React.Component {
                         <div className="info-contacts-title--square black-color--back"/>
                         <h2 className="info-contacts-title--text black-color font-second" >Contact</h2>
                     </div>
-                    <div className="info-contacts">
-                        {this.state.contacts.map((contact, i) => <Contact role={contact.title} mail={contact.email} key={i}/>)}
-                    </div>
+                    {contactDisplay}
                 </div>
             </div>
         )
