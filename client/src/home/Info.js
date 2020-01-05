@@ -31,7 +31,7 @@ class Info extends React.Component {
         for (let i = 0, count = 0; i < this.state.contacts.length;) {
             let line = [];
             for (let n = 0; n < 4 && i < this.state.contacts.length; ++n, ++i)
-                line.push(<Contact role={this.state.contact[i].title} mail={this.state.contact[i].email} key={n}/>);
+                line.push(<Contact role={this.state.contacts[i].title} mail={this.state.contacts[i].email} key={n}/>);
             contactDisplay.push(<div className="info-contacts-line" key={count++}>{line}</div>);
         }
         return (

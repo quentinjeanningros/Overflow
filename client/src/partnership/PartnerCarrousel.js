@@ -3,6 +3,7 @@ import './PartnerCarrousel.css';
 import {ArrowLeft, ArrowRight} from '../assets/svg-react/index.js';
 import {CSSTransition} from 'react-transition-group';
 import Typing from '../modules/Typing.js';
+import anime from 'animejs/lib/anime.es.js';
 
 class Partner {
     constructor(name, epitech, iseg, eart, image) {
@@ -23,13 +24,13 @@ class PartnerCarrousel extends React.Component {
         this.length = this.props.length;
         this.partners = props.partners;
         this.setter = props.setter;
+        this.move = 0;
 
         this.eventListener = this.eventListener.bind(this);
         this.forward = this.forward.bind(this);
         this.backward = this.backward.bind(this);
         this.moveTo = this.moveTo.bind(this);
         this.generateItems = this.generateItems.bind(this);
-
     }
 
     componentDidMount() {
@@ -60,15 +61,13 @@ class PartnerCarrousel extends React.Component {
 
     moveTo(id) {
         const {list} = this.state;
-        let n = Math.floor(this.length / 2) - id;
-        if (n < 0) {
-            n = n * -1
-            for (let i = 0; i < n; ++i)
+        this.move = Math.floor(this.length / 2) - id;
+        if (this.move < 0)
+            for (let i = 0; i < this.move * -1; ++i)
                 list.push(list.shift())
-        } else if (n > 0) {
-            for (let i = 0; i < n; ++i)
+        else if (this.move > 0)
+            for (let i = 0; i < this.move; ++i)
                 list.unshift(list.pop())
-        }
         this.setter(this.state.list[Math.floor(this.state.list.length / 2)]);
     }
 
@@ -78,7 +77,7 @@ class PartnerCarrousel extends React.Component {
             if (i === Math.floor(this.length / 2))
                 listoDisplay.push(<PartnerCardFocused name={this.state.list[n].name} key={i}/>);
             else
-                listoDisplay.push(<PartnerCard name={this.state.list[n].name} id={n} callback={this.moveTo} key={i}/>);
+                listoDisplay.push(<PartnerCard name={this.state.list[n].name} id={n} move={this.move} callback={this.moveTo} key={i}/>);
             if (n + 1 >= this.partners.length)
                 n = - 1;
         };
@@ -163,8 +162,10 @@ class PartnerCard extends React.Component {
         super(props);
         this.state = {
         }
+        this.card = null;
         this.id = props.id;
         this.callback = props.callback;
+        this.target = React.createRef();
 
         this.click = this.click.bind(this);
     }
@@ -173,11 +174,32 @@ class PartnerCard extends React.Component {
         this.callback(this.id)
     }
 
+    UNSAFE_componentWillReceiveProps(nextProps) {
+        if (nextProps.move === 0)
+            return;
+        anime({
+            targets: this.target,
+            translateX: 100 * nextProps.move  + "%",
+            easing: 'easeOutElastic',
+            duration: 1000,
+            complete: function() {
+                anime({
+                    targets: this.target,
+                    translateX: 0,
+                    easing: 'easeOutElastic',
+                    duration: 0
+                })
+            }
+        });
+    }
+    
     render() {
         return (
-            <div className="partner-card--background black-color--back button" onClick={this.click}>
-                <div className="partner-card--square white-color--back"/>
-                <h1 className="partner-card--text white-color font-first select-none">{this.props.name}</h1>
+            <div setTarget={this.setTarget}>
+                <div className="partner-card--background black-color--back button" onClick={this.click}>
+                    <div className="partner-card--square white-color--back"/>
+                    <h1 className="partner-card--text white-color font-first select-none">{this.props.name}</h1>
+                </div>
             </div>
         )
     }

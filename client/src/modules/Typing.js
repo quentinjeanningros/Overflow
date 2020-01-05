@@ -42,8 +42,10 @@ class Typing extends React.Component {
     }
 
     async UNSAFE_componentWillReceiveProps(nextProps) {
-        this.newText = nextProps.text
-        this.change()
+        if (this.newText !== nextProps.text) {
+            this.newText = nextProps.text
+            this.change()
+        }
     }
 
     render() {
