@@ -1,8 +1,8 @@
 import React from 'react';
 import Info from './Info.js';
 import anime from 'animejs/lib/anime.es.js';
-import {vwTOpx, pxTOvw} from '../assets/convert.js'
-import {Overflow, Triangle, TriangleOver} from '../assets/svg-react/index.js';
+import {vwTOpx, pxTOvw} from '../../assets/convert.js'
+import {Overflow, Triangle, TriangleOver} from '../../assets/svg-react/index.js';
 import './Home.css';
 
 class Home extends React.Component {

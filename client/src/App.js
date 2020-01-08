@@ -1,8 +1,8 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
-import Events from './events/Events'
-import Home from './home/Home'
-import Partnership from './partnership/Partnership'
+import Events from './pages/events/Events'
+import Home from './pages/home/Home'
+import Partnership from './pages/partnership/Partnership'
 import './App.css'
 import './config.css'
 

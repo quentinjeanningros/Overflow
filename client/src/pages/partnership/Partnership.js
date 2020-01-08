@@ -1,9 +1,11 @@
 import React from 'react';
 import {PartnerCarrousel, Partner}  from './PartnerCarrousel.js';
-import {NavigationBar, Link}  from '../modules/NavigationBar.js';
+import {NavigationBar, Link}  from '../../modules/NavigationBar.js';
 import './Partnership.css'
-import Typing from '../modules/Typing.js';
-import config from "../config";
+import ReactSvgLink from '../../modules/ReactSvgLink.js'
+import {SchoolEart, SchoolIseg, SchoolEpitech} from '../../assets/svg-react/index.js'
+import Typing from '../../modules/Typing.js';
+import config from "../../config";
 
 class Partnership extends React.Component {
     constructor(props) {
@@ -27,7 +29,8 @@ class Partnership extends React.Component {
     }
 
     setFocused(partner) {
-        this.setState({focused: partner})
+        if (this.state.focused !== partner)
+            this.setState({focused: partner})
     }
 
     componentDidMount() {
@@ -43,16 +46,30 @@ class Partnership extends React.Component {
     }
 
     render() {
+        let IsegClass = "button partnerchip-school-svg black-color--fill"
+        if (this.state.focused.iseg === false)
+            IsegClass += " transparent";
+        let EpiClass = "button partnerchip-school-svg black-color--fill"
+        if (this.state.focused.epitech === false)
+            EpiClass += " transparent";
+        let EartClass = "button partnerchip-school-svg black-color--fill"
+        if (this.state.focused.eart === false)
+            EartClass += " transparent";
         return (
             <div id="partnership-page" className="background white-color--back">
                 <div className="square-title black-color--back"/>
                 <h1 className="page-title font-second black-color select-none">Partnership</h1>
                 <NavigationBar color="black-color" triggerColor="blue-color" links={this.linkedPages}/>
                 <div className="partnership--carrousel">
-                    <PartnerCarrousel length={7} loading={this.state.loading} error={this.state.error} partners={this.partners /* TODO replace by this.state.partners*/} setter={this.setFocused}/>
+                    <PartnerCarrousel length={9} loading={this.state.loading} error={this.state.error} partners={this.partners /* TODO replace by this.state.partners*/} setter={this.setFocused}/>
                 </div>
                 <div className="focused-text--container">
                     <Typing text={this.state.focused.name.toUpperCase()} startTime={500} spacetime={80} class="focused-text black-color font-first select-none"/>
+                </div>
+                <div className="partnerchip-school--container">
+                    <ReactSvgLink image={SchoolEart} class={IsegClass} activateClick={this.state.focused.eart} link={"https://www.e-artsup.net/"}/>
+                    <ReactSvgLink image={SchoolEpitech} class={EpiClass} activateClick={this.state.focused.epitech} link={"https://www.epitech.eu/"}/>
+                    <ReactSvgLink image={SchoolIseg} class={EartClass} activateClick={this.state.focused.iseg} link={"https://www.iseg.fr/"}/>
                 </div>
             </div>
         )

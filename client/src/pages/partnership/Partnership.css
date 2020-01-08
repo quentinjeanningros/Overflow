@@ -25,3 +25,18 @@
     display: flex;
     justify-content: center;
 }
+
+.partnerchip-school--container {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    top: 87vh
+}
+
+.partnerchip-school-svg {
+    transition: all 0.2s ease-out;
+    height: 8vh;
+    margin-left: 0.5vw;
+    margin-right: 0.5vw;
+}

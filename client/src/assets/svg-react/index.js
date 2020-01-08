@@ -1,5 +1,3 @@
-export { default as ArrowLeft } from './ArrowLeft'
-export { default as ArrowRight } from './ArrowRight'
 export { default as Overflow } from './Overflow'
 export { default as SchoolEart } from './SchoolEart'
 export { default as SchoolEpitech } from './SchoolEpitech'
