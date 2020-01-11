@@ -10,7 +10,8 @@ class Typing extends React.Component {
         this.spacetime = props.spacetime;
         this.startTime = props.startTime;
         this.increment = 0;
-        this.newText = ""
+        this.newText = "";
+        this.inChange = false;
 
         this.typing = this.typing.bind(this);
         this.change = this.change.bind(this);
@@ -30,8 +31,10 @@ class Typing extends React.Component {
         if (this.increment !== 0) {
             this.increment -= 1;
             await this.setState({textDisplay: text.substring(0, this.increment)})
-            setTimeout(this.change, this.spacetime / 2);
+            setTimeout(this.change, this.spacetime / 3);
+            this.inChange = true;
         } else {
+            this.inChange = false;
             this.setState({text: this.newText});
             setTimeout(this.typing, this.spacetime);
         }
@@ -44,7 +47,14 @@ class Typing extends React.Component {
     async UNSAFE_componentWillReceiveProps(nextProps) {
         if (this.newText !== nextProps.text) {
             this.newText = nextProps.text
-            this.change()
+            if (this.increment !== 0 && this.inChange === true) {
+                const {text} = this.state;
+                this.increment = 0;
+                await this.setState({textDisplay: text.substring(0, this.increment)})
+                this.setState({text: this.newText});
+                setTimeout(this.typing, this.spacetime);
+            } else
+                this.change()
         }
     }
 
