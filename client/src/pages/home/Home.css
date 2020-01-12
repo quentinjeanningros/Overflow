@@ -9,16 +9,23 @@
     margin-bottom: 17vh;
 }
 
+.nav-button-home__marging--none {
+  top: 0.5vw;
+  left: 0.5vw;
+  position: absolute;
+  display: flex;
+}
+
 .nav-button-home__marging {
-    transition: all 0.1s ease-out 0.1s;
-    top: 0.5vw;
-    left: 0.5vw;
+    transition: all 0.15s ease-out;
+    top: 0.3vw;
+    left: 0.3vw;
     position: absolute;
     display: flex;
 }
 
 .nav-button-home__marging--hover {
-    transition: all 0.1s ease-out 0.1s;
+    transition: all 0.15s ease-out;
     top: 0vw;
     left: 0vw;
     position: absolute;

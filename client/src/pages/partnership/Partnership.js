@@ -5,7 +5,10 @@ import './Partnership.css'
 import ReactSvgLink from '../../modules/ReactSvgLink.js'
 import {SchoolEart, SchoolIseg, SchoolEpitech} from '../../assets/svg-react/index.js'
 import Typing from '../../modules/Typing.js';
-import config from "../../config";
+import config from '../../config';
+
+//TODELET
+import affiche from '../../assets/Affiche_Barberousse.png'
 
 class Partnership extends React.Component {
     constructor(props) {
@@ -18,12 +21,12 @@ class Partnership extends React.Component {
         };
         this.linkedPages = [new Link("Home", "/home"), new Link("Events", "events")];
 
-        this.partners = [new Partner("Barberousse", true, true, true, ""),
-            new Partner("Flam's", true, false, false, ""),
-            new Partner("McDonald's", true, false, true, ""),
-            new Partner("Chez Victor", true, true, true, ""),
-            new Partner("Nooï", true, false, false, ""),
-            new Partner("Le Phonographe", true, true, true, "")];
+        this.partners = [new Partner("Barberousse", true, true, true, affiche, "Accompagnement offert sur un menu avec le code : 799001435"),
+            new Partner("Flam's", true, false, false, affiche, "Happy hour valables toute la nuit le mardi, mercredi et jeudi"),
+            new Partner("McDonald's", true, false, true, affiche, "Happy hour valables toute la nuit le mardi, mercredi et jeudi"),
+            new Partner("Chez Victor", true, true, true, affiche, "Les salades sont au prix de celles vendus sans l'emballage, et une réduction supplémentaire s'applique vous prenez réellement votre emballage | Sandwich à composer à 5€ au lieu de 5.90€"),
+            new Partner("Nooï", true, false, false, affiche, "Seul ou en petit groupe : Boisson offerte En grand groupe : Flams à volonté et 1L de boisson pour 14€/p | 3,20€ la traditionnelle et 4€ la gratinée à emporter)"),
+            new Partner("Le Phonographe", true, true, true, affiche, "Happy hour prolongé jusqu'à minuit toute la semaine ! 3€ la pinte de Meteor !")];
 
         this.setFocused = this.setFocused.bind(this);
     }
@@ -49,12 +52,18 @@ class Partnership extends React.Component {
         let IsegClass = "button partnerchip-school-svg black-color--fill"
         if (this.state.focused.iseg === false)
             IsegClass += " transparent";
+        else
+            IsegClass += " button";
         let EpiClass = "button partnerchip-school-svg black-color--fill"
         if (this.state.focused.epitech === false)
             EpiClass += " transparent";
-        let EartClass = "button partnerchip-school-svg black-color--fill"
+        else
+            EpiClass += " button";
+        let EartClass = "partnerchip-school-svg black-color--fill"
         if (this.state.focused.eart === false)
             EartClass += " transparent";
+        else
+            EartClass += " button";
         return (
             <div id="partnership-page" className="background white-color--back">
                 <div className="square-title black-color--back"/>
@@ -64,12 +73,12 @@ class Partnership extends React.Component {
                     <PartnerCarrousel length={9} loading={this.state.loading} error={this.state.error} partners={this.partners /* TODO replace by this.state.partners*/} setter={this.setFocused}/>
                 </div>
                 <div className="focused-text--container">
-                    <Typing text={this.state.focused.name.toUpperCase()} startTime={500} spacetime={80} class="focused-text black-color font-first select-none"/>
+                    <Typing text={this.state.focused.name.toUpperCase()} startTime={500} spacetime={80} class="focused-text black-color font-first"/>
                 </div>
                 <div className="partnerchip-school--container">
-                    <ReactSvgLink image={SchoolEart} class={IsegClass} activateClick={this.state.focused.eart} link={"https://www.e-artsup.net/"}/>
-                    <ReactSvgLink image={SchoolEpitech} class={EpiClass} activateClick={this.state.focused.epitech} link={"https://www.epitech.eu/"}/>
-                    <ReactSvgLink image={SchoolIseg} class={EartClass} activateClick={this.state.focused.iseg} link={"https://www.iseg.fr/"}/>
+                    <ReactSvgLink image={SchoolEart} class={EartClass} classHover="blue-color--fill partnerchip-school-svg--hover" activateClick={this.state.focused.eart} link={"https://www.e-artsup.net/"}/>
+                    <ReactSvgLink image={SchoolEpitech} class={EpiClass} classHover="blue-color--fill partnerchip-school-svg--hover" activateClick={this.state.focused.epitech} link={"https://www.epitech.eu/"}/>
+                    <ReactSvgLink image={SchoolIseg} class={IsegClass} classHover="blue-color--fill partnerchip-school-svg--hover" activateClick={this.state.focused.iseg} link={"https://www.iseg.fr/"}/>
                 </div>
             </div>
         )

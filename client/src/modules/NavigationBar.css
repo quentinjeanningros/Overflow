@@ -32,14 +32,14 @@
 }
 
 .navigation-bar__link-square {
-    transition: all 0.1s ease-out 0.1s;
+    transition: all 0.1s ease-out;
     width: 1vw;
     height: 1vw;
     margin-right: 0.25vw;
 }
 
 .navigation-bar__link-square--hover {
-    transition: all 0.15s ease-out 0.15s;
+    transition: all 0.15s ease-out;
     width: 1.5vw;
     height: 100%;
     margin-right: 0.5vw;

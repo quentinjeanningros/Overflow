@@ -22,12 +22,13 @@ function moveAnimation(elem, move, ration, callback) {
 }
 
 class Partner {
-    constructor(name, epitech, iseg, eart, image) {
-        this.name = name
-        this.epitech = epitech
-        this.iseg = iseg
-        this.eart = eart
-        this.image = image
+    constructor(name, epitech, iseg, eart, image, description) {
+        this.name = name;
+        this.epitech = epitech;
+        this.iseg = iseg;
+        this.eart = eart;
+        this.image = image;
+        this.description = description;
     }
 }
 
@@ -78,7 +79,6 @@ class PartnerCarrousel extends React.Component {
     moveTo(id) {
         const {list} = this.state;
         this.move  = Math.floor(this.length / 2) - id
-        console.log(this.move)
         if (this.move < 0)
             for (let i = 0; i < this.move * -1; ++i)
                 list.push(list.shift());
@@ -118,24 +118,44 @@ class PartnerCardFocused extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: props.partner.name
+            name: props.partner.name,
+            partner: props.partner,
+            hover: false,
+            clicked: false,
+            clickable: true
         }
-        this.clicker = false;
 
         this.targetContainer = React.createRef();
         this.targetBackground = React.createRef();
         this.targetSquare = React.createRef();
         this.targetText = React.createRef();
+        this.targetImage = React.createRef();
+        this.targetDescription = React.createRef();
         this.callback = props.callback;
         this.click = this.click.bind(this);
+        this.toggleHover = this.toggleHover.bind(this);
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.partner !== prevProps.partner) {
+            setTimeout(() => {this.setState({partner: prevProps.partner});
+                anime({
+                targets: [this.targetImage.current, this.targetDescription.current],
+                easing: 'easeInOutQuint',
+                opacity: 1,
+                duration: 350,
+            });}, 500)
+        }
     }
 
     UNSAFE_componentWillReceiveProps(nextProps) {
         this.clicked = false;
         if (nextProps.move === 0)
             return;
+        this.setState({clickable: false});
         moveAnimation(this.targetContainer, nextProps.move, 100, () => {
             this.setState({name: nextProps.partner.name});
+            this.setState({clickable: true});
             this.callback(nextProps.partner);
         });
         anime({
@@ -181,21 +201,35 @@ class PartnerCardFocused extends React.Component {
             }
         });
         anime({
+            targets: this.targetImage.current,
+            easing: 'easeInOutQuint',
+            opacity: 0,
+            duration: 200,
+        });
+        anime({
             targets: this.targetText.current,
             easing: 'easeInOutQuint',
             opacity: 1,
-            duration: 0,
-        })
+            duration: 200,
+        });
+        anime({
+            targets: this.targetDescription.current,
+            easing: 'easeInOutQuint',
+            opacity: 0,
+            duration: 200,
+        });
     }
 
-    click() {
-        this.clicked = !this.clicked
-        if (this.clicked === true) {
+    async click() {
+        if (this.state.clickable === false)
+            return
+        await this.setState({clicked: !this.state.clicked})
+        if (this.state.clicked === true) {
             anime({
                 targets: this.targetSquare.current,
                 easing: 'easeInOutExpo',
                 borderBottomRightRadius: "0vh",
-                height: "25vh",
+                height: "1.5vh",
                 duration: 450,
             });
             anime({
@@ -204,6 +238,12 @@ class PartnerCardFocused extends React.Component {
                 opacity: 0,
                 duration: 0,
             })
+            anime({
+                targets: this.targetImage.current,
+                easing: 'easeInOutQuint',
+                opacity: 0,
+                duration: 450,
+            });
         } else {
             anime({
                 targets: this.targetSquare.current,
@@ -212,26 +252,46 @@ class PartnerCardFocused extends React.Component {
                 height: "50vh",
                 duration: 450,
             });
-            anime({
+            setTimeout(() => anime({
                 targets: this.targetText.current,
                 easing: 'easeInOutQuint',
                 opacity: 1,
                 duration: 0,
+            }), 450)
+            anime({
+                targets: this.targetImage.current,
+                easing: 'easeInOutQuint',
+                opacity: 1,
+                duration: 450,
             });
         }
     }
 
+    toggleHover() {
+        this.setState({hover: !this.state.hover})
+    }
+
     render() {
+        let classBackground = "partner-card-focused--background__extern"
+        if (this.state.hover && this.state.clicked === false)
+            classBackground += " blue-color--back"
+        else
+            classBackground += " black-color--back"
+        if (this.state.clickable === true)
+            classBackground += " button"
         return (
             <div>
                 <div className="partner-card-focused--text--container">
                     <div className="partner-card-focused--square blue-color--back"/>
-                    <Typing text={this.state.name} startTime={450} spacetime={80} class="partner-card-focused--text black-color font-first select-none " />
+                    <Typing text={this.state.name} startTime={450} spacetime={80} class="partner-card-focused--text black-color font-first" />
                 </div>
                 <div ref={this.targetContainer} className="partner-card-focused--container">
-                    <div ref={this.targetBackground} className="partner-card-focused--background__extern black-color--back button" onClick={this.click}>
-                        <div ref={this.targetSquare} className="partner-card-focused--background__intern white-color--back"/>
+                    <div ref={this.targetBackground} className={classBackground} onClick={this.click} onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover}>
+                        <div ref={this.targetSquare} className="partner-card-focused--background__intern white-color--back">
+                            <img ref={this.targetImage} src={this.state.partner.image} className="partner-card-focused--image select-none" alt="Focused partenaire poster"/>
+                        </div>
                         <h1 ref={this.targetText} className="partner-card--text white-color font-first select-none transparent">{this.state.name}</h1>
+                        <p ref={this.targetDescription} className="partner-card-focused--description white-color font-first">{this.state.partner.description}</p>
                     </div>
                 </div>
             </div>
@@ -243,7 +303,8 @@ class PartnerCard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: props.name
+            name: props.name,
+            hover: false
         }
         this.card = null;
         this.id = props.id;
@@ -256,6 +317,7 @@ class PartnerCard extends React.Component {
         this.length = props.length;
 
         this.click = this.click.bind(this);
+        this.toggleHover = this.toggleHover.bind(this);
     }
 
     click() {
@@ -274,7 +336,7 @@ class PartnerCard extends React.Component {
     }
 
     goBig(move, callback) {
-        moveAnimation(this.targetContainer, move, 89.7, null);
+        moveAnimation(this.targetContainer, move, 91, null);
         anime({
             targets: this.targetBackground.current,
             easing: 'easeInOutQuint',
@@ -320,15 +382,27 @@ class PartnerCard extends React.Component {
         });
     }
 
+    toggleHover() {
+        this.setState({hover: !this.state.hover})
+    }
+
     render() {
-        let classBackground = "partner-card--background black-color--back"
+        let classBackground = "partner-card--background"
         if (this.callback !== null)
             classBackground += " button"
+        if (this.callback !== null && this.state.hover)
+            classBackground += " blue-color--back"
+        else
+            classBackground += " black-color--back"
         return (
             <div ref={this.targetContainer} >
-                <div ref={this.targetBackground} className={classBackground} onClick={this.click}>
+                <div ref={this.targetBackground}
+                    className={classBackground}
+                    onClick={this.click}
+                    onMouseEnter={this.toggleHover}
+                    onMouseLeave={this.toggleHover}>
                     <div ref={this.targetSquare} className="partner-card--square white-color--back"/>
-                    <h1 ref={this.targetText} className="partner-card--text white-color font-first select-none">{this.state.name}</h1>
+                    <h1 ref={this.targetText} className="partner-card--text white-color font-first">{this.state.name}</h1>
                 </div>
             </div>
         )

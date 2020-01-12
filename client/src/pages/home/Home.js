@@ -94,14 +94,14 @@ class NavButtonHome extends React.Component {
 
     render() {
         let classContainer = "nav-button-home__marging"
-        if (this.state.hover)
+        if (this.state.hover === false)
             classContainer += "--hover "
         return (
             <div className="nav-button-home-container button"
                 onMouseEnter={this.toggleHover}
                 onMouseLeave={this.toggleHover}
                 onClick={this.clicked}>
-                <div className="nav-button-home__marging">
+                <div className="nav-button-home__marging--none">
                     <div className="blue-color--back nav-button-home--square"/>
                     <h3 className="blue-color select-none nav-button-home--text font-first">{this.text}</h3>
                 </div>
