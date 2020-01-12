@@ -276,6 +276,7 @@ class PartnerCard extends React.Component {
         this.targetBackgroundExtern = React.createRef();
         this.targetContainer = React.createRef();
         this.targetBackgroundIntern = React.createRef();
+        this.targetText = React.createRef();
 
         this.click = this.click.bind(this);
         this.toggleHover = this.toggleHover.bind(this);
@@ -338,7 +339,7 @@ class PartnerCard extends React.Component {
     }
 
     click() {
-        this.props.callback(this.props.id)
+        this.props.callback(this.props.id);
     }
 
     toggleHover() {
