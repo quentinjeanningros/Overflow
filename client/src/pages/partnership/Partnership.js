@@ -70,7 +70,7 @@ class Partnership extends React.Component {
                 <h1 className="page-title font-second black-color select-none">Partnership</h1>
                 <NavigationBar color="black-color" triggerColor="blue-color" links={this.linkedPages}/>
                 <div className="partnership--carrousel">
-                    <PartnerCarrousel length={9} loading={this.state.loading} error={this.state.error} partners={this.partners /* TODO replace by this.state.partners*/} setter={this.setFocused}/>
+                    <PartnerCarrousel loading={this.state.loading} error={this.state.error} partners={this.partners /* TODO replace by this.state.partners*/} callback={this.setFocused}/>
                 </div>
                 <div className="focused-text--container">
                     <Typing text={this.state.focused.name.toUpperCase()} startTime={500} spacetime={80} class="focused-text black-color font-first"/>
