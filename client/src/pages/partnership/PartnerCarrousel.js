@@ -237,11 +237,11 @@ class PartnerCardFocused extends React.Component {
     }
 
     render() {
-        let classBackground = "partner-card-focused--background__extern button"
+        let overClass = "";
         if (this.state.hover)
-            classBackground += " blue-color--back"
+            overClass += " blue-color--back"
         else
-            classBackground += " black-color--back"
+            overClass += " black-color--back"
         return (
             <div>
                 <div className="partner-card-focused--text--container">
@@ -249,7 +249,7 @@ class PartnerCardFocused extends React.Component {
                     <Typing text={this.state.partner.name} startTime={450} spacetime={80} class="partner-card-focused--text black-color font-first" />
                 </div>
                 <div ref={this.targetContainer}>
-                <div className={classBackground} onClick={this.click} onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover} ref={this.targetCard}>
+                <div className={"partner-card-focused--background__extern button" + overClass} onClick={this.click} onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover} ref={this.targetCard}>
                     <div className="front">
                         <h1 className="partner-card--text white-color font-first select-none back-hidden">{this.state.partner.name}</h1>
                         <div ref={this.targetBackgroundIntern} className="partner-card-focused--background__intern white-color--back">
@@ -257,7 +257,9 @@ class PartnerCardFocused extends React.Component {
                         </div>
                     </div>
                     <div className="back">
+                        <div className={"partner-card-focused--background__back" + overClass}>
                         <p className="partner-card-focused--description white-color font-first back-hidden">{this.state.partner.description}</p>
+                        </div>
                     </div>
                 </div>
                 </div>
