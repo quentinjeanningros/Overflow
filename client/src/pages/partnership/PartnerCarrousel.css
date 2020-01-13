@@ -35,6 +35,9 @@
     box-shadow: 15px 15px 20px rgba(0, 0, 0, 0.50);
     position: relative;
     transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
 }
 
 .front,
@@ -42,27 +45,34 @@
 {
     width: 100%;
     height: 100%;
-    position: fixed;
-    -webkit-perspective: none;
-    perspective: none;
+    position: absolute;
     -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
     backface-visibility: hidden;
+}
+
+.front {
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
 }
 
 .back-hidden {
-    -webkit-perspective: none;
-    perspective: none;
     -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
     backface-visibility: hidden;
 }
 
-.back
-{
-    position: absolute;
+.back {
     top: 0;
     left: 0;
     transform: rotateY(180deg) translateZ(0);
     -webkit-transform: rotateY(180deg) translateZ(0);
+    -moz-transform: rotateY(180deg) translateZ(0);
+    -ms-transform: rotateY(180deg) translateZ(0);
 }
 
 .partner-card-focused--background__intern {

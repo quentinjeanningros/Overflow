@@ -44,6 +44,7 @@ class PartnerCarrousel extends React.Component {
         };
         this.partners = props.partners;
         this.move = 0;
+        this.clickable = true;
 
         this.eventListener = this.eventListener.bind(this);
         this.forward = this.forward.bind(this);
@@ -88,15 +89,17 @@ class PartnerCarrousel extends React.Component {
             for (let i = 0; i < this.move; ++i)
                 list.unshift(list.pop());
         this.setState({list: list});
+        this.clickable = false;
+        setTimeout(() => {this.clickable = true}, this.spacetime);
     }
 
     generateItems(list) {
         let listoDisplay = [];
         for (let i = 0, n = 0; i < carrousselLength; ++i, ++n) {
             if (i === Math.floor(carrousselLength / 2))
-                listoDisplay.push(<PartnerCardFocused move={this.move} partner={list[n]}callback={this.props.callback} key={i}/>);
+                listoDisplay.push(<PartnerCardFocused move={this.move} partner={list[n]} callback={this.props.callback} key={i}/>);
             else
-                listoDisplay.push(<PartnerCard move={this.move} partner={list[n]} callback={this.moveTo} id={i} key={i}/>);
+                listoDisplay.push(<PartnerCard move={this.move} partner={list[n]} callback={this.moveTo} clickable={this.clickable} id={i} key={i}/>);
             if (n + 1 >= this.partners.length)
                 n = - 1;
         };
@@ -252,7 +255,7 @@ class PartnerCardFocused extends React.Component {
                 <div className={"partner-card-focused--background__extern button" + overClass} onClick={this.click} onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover} ref={this.targetCard}>
                     <div className="front">
                         <h1 className="partner-card--text white-color font-first select-none back-hidden">{this.state.partner.name}</h1>
-                        <div ref={this.targetBackgroundIntern} className="partner-card-focused--background__intern white-color--back">
+                        <div ref={this.targetBackgroundIntern} className="partner-card-focused--background__intern white-color--back back-hidden">
                             <img ref={this.targetImage} src={this.state.partner.image} className="partner-card-focused--image select-none back-hidden" alt="Focused partenaire poster"/>
                         </div>
                     </div>
@@ -339,7 +342,8 @@ class PartnerCard extends React.Component {
     }
 
     click() {
-        this.props.callback(this.props.id);
+        if (this.props.clickable === true)
+            this.props.callback(this.props.id);
     }
 
     toggleHover() {
