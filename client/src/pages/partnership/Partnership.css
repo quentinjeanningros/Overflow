@@ -12,14 +12,14 @@
     position: relative;
 }
 
-.focused-text {
+.partnership--focused-text {
     opacity: 0.1;
     text-align: center;
     font-size: 15vw;
     white-space: nowrap;
 }
 
-.focused-text--container {
+.partnership--focused-text--container {
     z-index: 0;
     position: relative;
     display: flex;

@@ -1,0 +1,97 @@
+.event-carrousel--container {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    align-items: center;
+    scroll-behavior: smooth;
+    height: 72vh;
+    padding-left: 10vh;
+    padding-right: 10vh;
+    width: auto;
+}
+
+.event-card--container {
+    transition: all 0.5s ease-out;
+    margin-left: 4vh;
+    margin-right: 4vh;
+    position: relative;
+}
+
+.event-card--container--hover {
+    transition: all 0.2s ease-out;
+    margin-left: 3vh;
+    margin-right: 3vh;
+    position: relative;
+}
+
+.event-card--image {
+    position: relative;
+    transition: all 0.5s ease-out;
+    height: 55vh;
+    box-shadow: 15px 15px 20px rgba(0, 0, 0, 0.50);
+}
+
+.event-card--image--hover {
+    position: relative;
+    transition: all 0.2s ease-out;
+    height: 65vh;
+    box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.70);
+}
+
+.event-card-info--container {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    margin-right: -50%;
+    opacity: 0;
+    overflow: hidden;
+}
+
+.event-card-info--price {
+    font-size: 9vh;
+}
+
+.event-card-info--first {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    margin-left: 3vh;
+    margin-right: 3vh;
+}
+
+.event-card-info--second {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    margin-right: 3vh;
+}
+
+.event-card-info--link {
+    transition: all 0.5s ease-out;
+    font-size: 4vh;
+    opacity: 0.50;
+}
+
+.event-card-info--link--hover {
+    transition: all 0.2s ease-out;
+    font-size: 4vh;
+    opacity: 1;
+}
+
+.event-card-info--date {
+    font-size: 3vh;
+}
+
+.event-card-info--euro {
+    margin-left: 0.5vh;
+    margin-top: 1vh;
+    font-size: 3vh;
+}

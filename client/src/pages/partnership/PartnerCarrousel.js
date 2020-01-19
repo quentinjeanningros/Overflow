@@ -229,9 +229,7 @@ class PartnerCardFocused extends React.Component {
             rotateY: {value: '+=180', delay: 200},
             easing: 'easeInOutSine',
             duration: 400,
-            complete: function(){
-                callback();
-            }
+            complete: function() {callback();}
         });
     }
 

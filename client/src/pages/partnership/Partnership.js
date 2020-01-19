@@ -72,8 +72,8 @@ class Partnership extends React.Component {
                 <div className="partnership--carrousel">
                     <PartnerCarrousel loading={this.state.loading} error={this.state.error} partners={this.partners /* TODO replace by this.state.partners*/} callback={this.setFocused}/>
                 </div>
-                <div className="focused-text--container">
-                    <Typing text={this.state.focused.name.toUpperCase()} startTime={500} spacetime={80} class="focused-text black-color font-first"/>
+                <div className="partnership--focused-text--container">
+                    <Typing text={this.state.focused.name.toUpperCase()} startTime={500} spacetime={80} class="partnership--focused-text black-color font-first"/>
                 </div>
                 <div className="partnerchip-school--container">
                     <ReactSvgLink image={SchoolEart} class={EartClass} classHover="blue-color--fill partnerchip-school-svg--hover" activateClick={this.state.focused.eart} link={"https://www.e-artsup.net/"}/>

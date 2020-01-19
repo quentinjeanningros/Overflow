@@ -4,6 +4,7 @@
 * {
     margin: 0px;
     padding: 0px;
+    scrollbar-width: none;
 }
 
 .background {
@@ -39,17 +40,5 @@
 }
 
 ::-webkit-scrollbar {
-    width: 15px;
-}
-
-::-webkit-scrollbar-track {
-    background: #000000;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #ffffff;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #005FFF;
+    display: none;
 }

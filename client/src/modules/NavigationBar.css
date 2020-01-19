@@ -20,19 +20,19 @@
 }
 
 .navigation-bar__link-text {
-    transition: all 0.15s ease-out 0.15s;
+    transition: all 0.3s ease-out;
     font-size: 2vw;
     margin-top: 0.5vw;
 }
 
 .navigation-bar__link-text--hover {
-    transition: all 0.15s ease-out 0.15s;
+    transition: all 0.15s ease-out;
     font-size: 2.5vw;
     margin-top: 0.0vw;
 }
 
 .navigation-bar__link-square {
-    transition: all 0.1s ease-out;
+    transition: all 0.3s ease-out;
     width: 1vw;
     height: 1vw;
     margin-right: 0.25vw;
