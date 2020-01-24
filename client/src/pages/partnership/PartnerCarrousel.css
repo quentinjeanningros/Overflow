@@ -69,10 +69,10 @@
 .back {
     top: 0;
     left: 0;
-    transform: rotateY(180deg) translateZ(0);
-    -webkit-transform: rotateY(180deg) translateZ(0);
-    -moz-transform: rotateY(180deg) translateZ(0);
-    -ms-transform: rotateY(180deg) translateZ(0);
+    transform: rotateY(180deg) translateZ(1px);
+    -webkit-transform: rotateY(180deg) translateZ(1px);
+    -moz-transform: rotateY(180deg) translateZ(1px);
+    -ms-transform: rotateY(180deg) translateZ(1px);
 }
 
 .partner-card-focused--background__intern {
