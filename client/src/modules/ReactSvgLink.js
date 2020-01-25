@@ -5,14 +5,14 @@ class ReactSvgLink extends React.Component {
         super(props);
         this.state = {
             hover: false
-        }
+        };
 
         this.toggleHover = this.toggleHover.bind(this);
         this.click = this.click.bind(this);
     }
 
     click() {
-        if (this.props.activateClick === true)
+        if (this.props.activateClick)
             window.open(this.props.link);
     }
 
@@ -21,9 +21,9 @@ class ReactSvgLink extends React.Component {
     }
 
     render() {
-        let classImage = this.props.class
-        if (this.state.hover === true && this.props.activateClick === true)
-            classImage += " " + this.props.classHover
+        let classImage = this.props.class;
+        if (this.state.hover && this.props.activateClick)
+            classImage += " " + this.props.classHover;
         return (
             <this.props.image className={classImage}
                 onMouseEnter={this.toggleHover}

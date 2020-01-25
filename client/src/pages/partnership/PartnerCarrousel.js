@@ -258,7 +258,7 @@ class PartnerCardFocused extends React.Component {
                         </div>
                     </div>
                     <div className="back">
-                        <p className="partner-card-focused--description white-color font-first back-hidden">{this.state.partner.description}</p>
+                        <p className="partner-card-focused--description white-color font-first back-hidden">{this.state.partner.info}</p>
                     </div>
                 </div>
                 </div>

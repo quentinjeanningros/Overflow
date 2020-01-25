@@ -31,7 +31,7 @@ CREATE TABLE events (
   sound      VARCHAR(256)  NOT NULL,
   place      VARCHAR(256)  NOT NULL,
   link_map   VARCHAR(256)  NOT NULL,
-  date       TIMESTAMP     NOT NULL,
+  date       TIMESTAMP     NOT NULL DEFAULT CURRENT_TIMESTAMP,
   price      DECIMAL(19,4) NOT NULL,
   info       TEXT          NOT NULL,
   epitech    BOOL          NOT NULL DEFAULT TRUE,

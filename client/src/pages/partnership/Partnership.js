@@ -10,12 +10,14 @@ import config from '../../config';
 //TODELET
 import affiche from '../../assets/Affiche_Barberousse.png'
 
+const default_partner = {name: "", image: "", info: "", epitech: false, eartsup: false, iseg: false};
+
 class Partnership extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            focused: new Partner("", false, false, false, ""),
-            loading: false,
+            focused: default_partner,
+            loading: true,
             error: null,
             partners: [],
         };
@@ -32,12 +34,12 @@ class Partnership extends React.Component {
     }
 
     setFocused(partner) {
-        if (this.state.focused !== partner)
+        if (this.state.focused !== partner) {
             this.setState({focused: partner})
+        }
     }
 
     componentDidMount() {
-        this.setState({loading: true});
         fetch(config.API_URL + "/partnerships", {method: "GET"})
             .then(response => response.json())
             .then(result => {
@@ -50,17 +52,17 @@ class Partnership extends React.Component {
 
     render() {
         let IsegClass = "button partnerchip-school-svg black-color--fill"
-        if (this.state.focused.iseg === false)
+        if (!this.state.focused.iseg)
             IsegClass += " transparent";
         else
             IsegClass += " button";
         let EpiClass = "button partnerchip-school-svg black-color--fill"
-        if (this.state.focused.epitech === false)
+        if (!this.state.focused.epitech)
             EpiClass += " transparent";
         else
             EpiClass += " button";
         let EartClass = "partnerchip-school-svg black-color--fill"
-        if (this.state.focused.eart === false)
+        if (!this.state.focused.eartsup)
             EartClass += " transparent";
         else
             EartClass += " button";
@@ -70,13 +72,16 @@ class Partnership extends React.Component {
                 <h1 className="page-title font-second black-color select-none">Partnership</h1>
                 <NavigationBar color="black-color" triggerColor="blue-color" links={this.linkedPages}/>
                 <div className="partnership--carrousel">
-                    <PartnerCarrousel loading={this.state.loading} error={this.state.error} partners={this.partners /* TODO replace by this.state.partners*/} callback={this.setFocused}/>
+                    {
+                        this.state.loading ? null : this.state.error ? "error" :
+                        <PartnerCarrousel partners={this.state.partners} callback={this.setFocused}/>
+                    }
                 </div>
                 <div className="partnership--focused-text--container">
                     <Typing text={this.state.focused.name.toUpperCase()} startTime={500} spacetime={80} class="partnership--focused-text black-color font-first"/>
                 </div>
                 <div className="partnerchip-school--container">
-                    <ReactSvgLink image={SchoolEart} class={EartClass} classHover="blue-color--fill partnerchip-school-svg--hover" activateClick={this.state.focused.eart} link={"https://www.e-artsup.net/"}/>
+                    <ReactSvgLink image={SchoolEart} class={EartClass} classHover="blue-color--fill partnerchip-school-svg--hover" activateClick={this.state.focused.eartsup} link={"https://www.e-artsup.net/"}/>
                     <ReactSvgLink image={SchoolEpitech} class={EpiClass} classHover="blue-color--fill partnerchip-school-svg--hover" activateClick={this.state.focused.epitech} link={"https://www.epitech.eu/"}/>
                     <ReactSvgLink image={SchoolIseg} class={IsegClass} classHover="blue-color--fill partnerchip-school-svg--hover" activateClick={this.state.focused.iseg} link={"https://www.iseg.fr/"}/>
                 </div>
