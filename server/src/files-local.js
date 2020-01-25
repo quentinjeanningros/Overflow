@@ -1,4 +1,3 @@
-const path = require('path');
 const fs = require('fs');
 const URL_SERVER = process.env.URL_SERVER || "http://127.0.0.1:8080";
 const FILES_FOLDER = process.env.FILES_FOLDER || "./files/";
@@ -42,8 +41,24 @@ function uploadHandler(req, res) {
     });
 }
 
+function deleteHandler(req, res) {
+    fs.unlink(FILES_FOLDER + req.params.name, function(err) {
+        if (err && err.code === 'ENOENT') {
+            res.status(404);
+            res.json({error: "file not found"});
+        } else if (err) {
+            res.status(500);
+            res.json({error: err});
+        } else {
+            res.status(200);
+            res.json({message: "ok"});
+        }
+    });
+}
+
 module.exports = {
     getListHandler: getListHandler,
     getFileHandler: getFileHandler,
-    uploadHandler: uploadHandler
+    uploadHandler: uploadHandler,
+    deleteHandler: deleteHandler
 };

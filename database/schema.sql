@@ -28,6 +28,7 @@ CREATE TABLE events (
   id         INTEGER       NOT NULL AUTO_INCREMENT,
   name       VARCHAR(256)  NOT NULL,
   image      VARCHAR(256)  NOT NULL,
+  sound      VARCHAR(256)  NOT NULL,
   place      VARCHAR(256)  NOT NULL,
   link_map   VARCHAR(256)  NOT NULL,
   date       TIMESTAMP     NOT NULL,

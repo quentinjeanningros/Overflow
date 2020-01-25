@@ -64,6 +64,7 @@ app.delete('/events', myBodyParser, db.middleware, auth.middleware, events.delet
 app.get('/files', files.getListHandler);
 app.get('/files/:name', files.getFileHandler);
 app.post('/files', db.middleware, auth.middleware, multer.single('file'), files.uploadHandler);
+app.delete('/files/:name', myBodyParser, db.middleware, auth.middleware, files.deleteHandler);
 
 // Invalid route management
 app.use(function (req, res) {
