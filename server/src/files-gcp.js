@@ -89,8 +89,22 @@ function uploadHandler(req, res) {
     });
 }
 
+function deleteHandler(req, res) {
+    return storage.bucket(BUCKET_NAME).deleteFiles(req.params.name)
+        .then(() => {
+            res.status(200);
+            res.json({message: "ok"});
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(400);
+            res.json({error: "file not found"});
+        })
+}
+
 module.exports = {
     getListHandler: getListHandler,
     getFileHandler: getFileHandler,
-    uploadHandler: uploadHandler
+    uploadHandler: uploadHandler,
+    deleteHandler: deleteHandler
 };

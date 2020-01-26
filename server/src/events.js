@@ -1,5 +1,5 @@
 function getHandler(req, res) {
-    req.my_db.query('SELECT id, name, image, place, link_map, date, price, info, epitech, eartsup, iseg FROM events', (err, results) => {
+    req.my_db.query('SELECT id, name, image, sound, place, link_map, date, price, info, epitech, eartsup, iseg FROM events', (err, results) => {
         if (err !== null) {
             res.status(500);
             res.json({error: "internal server error"});
@@ -12,8 +12,8 @@ function getHandler(req, res) {
 
 function postHandler(req, res) {
     const body = req.body;
-    req.my_db.query('INSERT INTO events (name, image, place, link_map, date, price, info, epitech, eartsup, iseg) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ) ',
-        [body.name, body.image, body.place, body.link_map, body.date, body.price, body.info, body.epitech, body.eartsup, body.iseg], (err, results) => {
+    req.my_db.query('INSERT INTO events (name, image, sound, place, link_map, date, price, info, epitech, eartsup, iseg) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ) ',
+        [body.name, body.image, body.sound, body.place, body.link_map, body.date, body.price, body.info, body.epitech, body.eartsup, body.iseg], (err, results) => {
             if (err !== null) {
                 console.log(err);
                 res.status(400);
@@ -27,8 +27,8 @@ function postHandler(req, res) {
 
 function patchHandler(req, res) {
     const body = req.body;
-    req.my_db.query('UPDATE partnerships SET name = ?, image = ?, place = ?, link_map = ?, date = ?, price = ?, info = ?, epitech = ?, eartsup = ?, iseg = ? WHERE id = ? ',
-        [body.name, body.image, body.place, body.link_map, body.date, body.price, body.info, body.epitech, body.eartsup, body.iseg, body.id], (err, results) => {
+    req.my_db.query('UPDATE partnerships SET name = ?, image = ?, sound = ?, place = ?, link_map = ?, date = ?, price = ?, info = ?, epitech = ?, eartsup = ?, iseg = ? WHERE id = ? ',
+        [body.name, body.image, body.sound, body.place, body.link_map, body.date, body.price, body.info, body.epitech, body.eartsup, body.iseg, body.id], (err, results) => {
             if (err !== null) {
                 res.status(400);
                 res.json({error: err.sqlMessage});
