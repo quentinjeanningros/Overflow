@@ -4,7 +4,7 @@ import Admin from './pages/admin/Admin'
 import Events from './pages/events/Events'
 import Files from "./pages/admin/files/Files";
 import Home from './pages/home/Home'
-import Login from "./pages/login/Login";
+import Login from "./pages/admin/login/Login";
 import Partnership from './pages/partnership/Partnership'
 import './App.css'
 import './config.css'

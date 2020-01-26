@@ -81,14 +81,19 @@ class EventCard extends React.Component {
     playAudio() {
         if (this.audio !== undefined) {
             this.audio.loop = true;
+            this.audio.volume = 0;
             this.playPromise = this.audio.play();
-            anime({
-                targets: this.audio,
-                volume: [0, 1],
-                easing: 'easeInOutSine',
-                duration: 500,
-                delay: 1500
-            })
+            if (this.playPromise !== undefined) {
+                this.playPromise.then(() =>
+                    anime({
+                        targets: this.audio,
+                        volume: [0, 1],
+                        easing: 'easeInOutSine',
+                        duration: 500,
+                        delay: 1500
+                    })
+                )
+            }
         }
     }
 

@@ -22,6 +22,18 @@
     fill: #000000;
 }
 
+.blue-color--border {
+    border-color: #005FFF;
+}
+
+.white-color--border {
+    border-color: #ffffff;
+}
+
+.black-color--border {
+    border-color: #000000;
+}
+
 .blue-color {
     color: #005FFF;
 }

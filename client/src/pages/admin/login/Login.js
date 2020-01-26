@@ -1,5 +1,7 @@
 import React from 'react';
-import config from "../../config";
+import config from "../../../config";
+import TextBox from "../../../modules/TextBox.js";
+import './Login.css';
 
 class Login extends React.Component {
     constructor(props) {
@@ -11,14 +13,17 @@ class Login extends React.Component {
             password: ""
         };
         this.login = this.login.bind(this);
-        this.updateInput = this.updateInput.bind(this);
+        this.setUsername = this.setUsername.bind(this);
+        this.setPassword = this.setPassword.bind(this);
+
     }
 
-    updateInput(username, event) {
-        if (username)
-            this.setState({username: event.target.value});
-        else
-            this.setState({password: event.target.value});
+    async setUsername(text) {
+        await this.setState({username: text})
+    }
+
+    async setPassword(text) {
+        await this.setState({password: text})
     }
 
     login(event) {
@@ -57,21 +62,14 @@ class Login extends React.Component {
             </div>
             : null;
         return (
-          <div>
-              <form onSubmit={this.login}>
-                  {error}
-                  {this.state.loading ? "IT IS LOADING" : null}
-                  <label>
-                      Username :
-                      <input type="text" value={this.state.username} onChange={(e) => this.updateInput(true, e)} />
-                  </label>
-                  <label>
-                      Password :
-                      <input type="password" value={this.state.password} onChange={(e) => this.updateInput(false, e)} />
-                  </label>
-                  <input type="submit" value="Se connecter" />
-              </form>
-          </div>
+            <div className="background black-color--back">
+                <form onSubmit={this.login} className="login--form--container">
+                    {error}
+                    {this.state.loading ? "IT IS LOADING" : null}
+                    <TextBox class="" label="Username" type="text" callback={this.setUsername}/>
+                    <TextBox class="" label="Password" type="password" callback={this.setPassword}/>
+                </form>
+            </div>
         );
     }
 }

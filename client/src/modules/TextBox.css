@@ -1,0 +1,29 @@
+.text-box {
+    transition: all 0.15s ease-out;
+    border: none;
+    font-size: 3vh;
+    font-weight: 700;
+    padding-left: 1.5vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    margin-top: 3vh;
+    border-style: solid;
+    border-width: 0 0 0.5vh 0;
+}
+
+.text-box__focus {
+    transition: all 0.3s ease-out;
+    border: none;
+    font-size: 3vh;
+    padding-left: 1.5vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    font-weight: 700;
+    margin-top: 2vh;
+    outline: none;
+}
+
+.text-box--label {
+    margin-top: 5vh;
+    font-size: 3vh;
+}
