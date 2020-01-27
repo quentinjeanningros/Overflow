@@ -26,8 +26,7 @@ class Login extends React.Component {
         await this.setState({password: text})
     }
 
-    login(event) {
-        event.preventDefault();
+    login() {
         if (this.state.loading)
             return;
         this.setState({loading: true, error: null});
@@ -63,11 +62,12 @@ class Login extends React.Component {
             : null;
         return (
             <div className="background black-color--back">
-                <form onSubmit={this.login} className="login--form--container">
+                <form className="login--form--container">
                     {error}
-                    {this.state.loading ? "IT IS LOADING" : null}
+                    {this.state.loading ? <h3 className="white-color">"IT IS LOADING"</h3> : null}
                     <TextBox class="" label="Username" type="text" callback={this.setUsername}/>
                     <TextBox class="" label="Password" type="password" callback={this.setPassword}/>
+                    <div className="white-color button" onClick={this.login}>login</div>
                 </form>
             </div>
         );
