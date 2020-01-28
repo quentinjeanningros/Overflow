@@ -27,7 +27,10 @@ class Login extends React.Component {
         await this.setState({password: text})
     }
 
-    login() {
+    login(e) {
+        e.preventDefault()
+        if (this.state.username === "" || this.state.password === "")
+            return;
         if (this.state.loading)
             return;
         this.setState({loading: true, error: null});
@@ -61,8 +64,10 @@ class Login extends React.Component {
 
     render() {
         let classButton = "white-color font-first login--login-button__above"
-        if (this.state.hover === true)
+        if (this.state.hover === true && this.state.username !== "" && this.state.password !== "")
             classButton += "--hover"
+        else if (this.state.username === "" || this.state.password === "")
+            classButton += "--none"
         const error = this.state.error ?
             <div>
                 {this.state.error}
@@ -70,25 +75,22 @@ class Login extends React.Component {
             : null;
         return (
             <div className="background black-color--back">
-                <form className="login--form--container">
+                <form className="login--form--container" onSubmit={this.login}>
                     {error}
                     {this.state.loading ? <h3 className="white-color">"IT IS LOADING"</h3> : null}
                     <TextBox class="" label="Username" type="text" callback={this.setUsername}/>
                     <TextBox class="" label="Password" type="password" callback={this.setPassword}/>
-                    {this.state.username !== "" && this.state.password !== "" ?
-                        <button className="button">
-                            <div className={classButton}
-                            onMouseEnter={this.toggleHover}
-                            onMouseLeave={this.toggleHover}
-                            onSelect={this.toggleHover}
-                            onClick={this.login}>
-                                Login
-                            </div>
-                            <div className="blue-color font-first login--login-button">
-                                Login
-                            </div>
-                        </button>
-                        : null}
+                    <button className="button">
+                        <div className={classButton}
+                        onMouseEnter={this.toggleHover}
+                        onMouseLeave={this.toggleHover}
+                        onClick={this.login}>
+                            Login
+                        </div>
+                        <div className="blue-color font-first login--login-button">
+                            Login
+                        </div>
+                    </button>
                 </form>
             </div>
         );
