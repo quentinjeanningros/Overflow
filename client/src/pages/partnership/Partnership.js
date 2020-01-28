@@ -1,14 +1,11 @@
 import React from 'react';
-import {PartnerCarrousel, Partner}  from './PartnerCarrousel.js';
+import PartnerCarrousel  from './PartnerCarrousel.js';
 import {NavigationBar, Link}  from '../../modules/NavigationBar.js';
 import './Partnership.css'
 import ReactSvgLink from '../../modules/ReactSvgLink.js'
 import {SchoolEart, SchoolIseg, SchoolEpitech} from '../../assets/svg-react/index.js'
 import Typing from '../../modules/Typing.js';
 import config from '../../config';
-
-//TODELET
-import affiche from '../../assets/Affiche_Barberousse.png'
 
 const default_partner = {name: "", image: "", info: "", epitech: false, eartsup: false, iseg: false};
 
@@ -22,14 +19,7 @@ class Partnership extends React.Component {
             partners: [],
         };
         this.linkedPages = [new Link("Home", "/home"), new Link("Events", "events")];
-
-        this.partners = [new Partner("Barberousse", true, true, true, affiche, "Accompagnement offert sur un menu avec le code : 799001435"),
-            new Partner("Flam's", true, false, false, affiche, "Happy hour valables toute la nuit le mardi, mercredi et jeudi"),
-            new Partner("McDonald's", true, false, true, affiche, "Happy hour valables toute la nuit le mardi, mercredi et jeudi"),
-            new Partner("Chez Victor", true, true, true, affiche, "Les salades sont au prix de celles vendus sans l'emballage, et une réduction supplémentaire s'applique vous prenez réellement votre emballage | Sandwich à composer à 5€ au lieu de 5.90€"),
-            new Partner("Nooï", true, false, false, affiche, "Seul ou en petit groupe : Boisson offerte En grand groupe : Flams à volonté et 1L de boisson pour 14€/p | 3,20€ la traditionnelle et 4€ la gratinée à emporter)"),
-            new Partner("Le Phonographe", true, true, true, affiche, "Happy hour prolongé jusqu'à minuit toute la semaine ! 3€ la pinte de Meteor !")];
-
+        this.partners = []
         this.setFocused = this.setFocused.bind(this);
     }
 

@@ -2,6 +2,8 @@ import React from 'react';
 import config from "../../../config";
 import TextBox from "../../../modules/TextBox.js";
 import './Login.css';
+import Lottie from 'react-lottie';
+import * as animationData from '../../../assets/loading-animation.json'
 
 class Login extends React.Component {
     constructor(props) {
@@ -11,7 +13,8 @@ class Login extends React.Component {
             error: null,
             username: "",
             password: "",
-            hover: false
+            hover: false,
+            loop: false
         };
         this.login = this.login.bind(this);
         this.setUsername = this.setUsername.bind(this);
@@ -34,6 +37,7 @@ class Login extends React.Component {
         if (this.state.loading)
             return;
         this.setState({loading: true, error: null});
+        this.setState({loop: true});
         const body = {
             username: this.state.username,
             password: this.state.password
@@ -58,11 +62,21 @@ class Login extends React.Component {
             });
     }
 
+
     toggleHover() {
         this.setState({hover: !this.state.hover})
     }
 
     render() {
+        let defaultOptions = {
+            loop: true,
+            autoplay: true,
+            setSpeed: 2,
+            animationData: animationData.default,
+            rendererSettings: {
+              preserveAspectRatio: 'xMidYMid slice'
+            }
+          };
         let classButton = "white-color font-first login--login-button__above"
         if (this.state.hover === true && this.state.username !== "" && this.state.password !== "")
             classButton += "--hover"
@@ -77,20 +91,36 @@ class Login extends React.Component {
             <div className="background black-color--back">
                 <form className="login--form--container" onSubmit={this.login}>
                     {error}
-                    {this.state.loading ? <h3 className="white-color">"IT IS LOADING"</h3> : null}
                     <TextBox class="" label="Username" type="text" callback={this.setUsername}/>
                     <TextBox class="" label="Password" type="password" callback={this.setPassword}/>
-                    <button className="button">
-                        <div className={classButton}
-                        onMouseEnter={this.toggleHover}
-                        onMouseLeave={this.toggleHover}
-                        onClick={this.login}>
-                            Login
+                    {this.state.loop ?
+                        <div className="login-load-animation">
+                            <Lottie options={defaultOptions}
+                            height={100}
+                            width={100}
+                            eventListeners={[
+                                {
+                                eventName: 'loopComplete',
+                                callback: () => {
+                                    if (this.state.loading === false)
+                                        this.setState({loop: false});
+                                    },
+                                },
+                            ]}/>
                         </div>
-                        <div className="blue-color font-first login--login-button">
-                            Login
-                        </div>
-                    </button>
+                        :
+                        <button className="button">
+                            <div className={classButton}
+                            onMouseEnter={this.toggleHover}
+                            onMouseLeave={this.toggleHover}
+                            onClick={this.login}>
+                                Login
+                            </div>
+                            <div className="blue-color font-first login--login-button">
+                                Login
+                            </div>
+                        </button>
+                    }
                 </form>
             </div>
         );

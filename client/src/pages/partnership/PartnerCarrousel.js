@@ -25,17 +25,6 @@ function moveAnimation(elem, duration, move, ration, callback) {
     });
 }
 
-class Partner {
-    constructor(name, epitech, iseg, eart, image, description) {
-        this.name = name;
-        this.epitech = epitech;
-        this.iseg = iseg;
-        this.eart = eart;
-        this.image = image;
-        this.description = description;
-    }
-}
-
 class PartnerCarrousel extends React.Component {
     constructor(props) {
         super(props);
@@ -368,4 +357,4 @@ class PartnerCard extends React.Component {
 }
 
 
-export {PartnerCarrousel, Partner};
+export default PartnerCarrousel;

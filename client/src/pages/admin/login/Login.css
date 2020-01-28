@@ -36,3 +36,7 @@
     position: absolute;
     margin-left: 0vh;
 }
+
+.login-load-animation {
+    margin-top: 5vh;
+}
