@@ -1,5 +1,11 @@
+/* background */
+
 .blue-color--back {
     background-color: #005FFF;
+}
+
+.orange-color--back {
+    background-color: #F7931E;
 }
 
 .white-color--back {
@@ -10,8 +16,15 @@
     background-color: #000000;
 }
 
+
+/* fill */
+
 .blue-color--fill {
     fill: #005FFF;
+}
+
+.orange-color--fill {
+    fill: #F7931E;
 }
 
 .white-color--fill {
@@ -22,8 +35,15 @@
     fill: #000000;
 }
 
+
+/* border */
+
 .blue-color--border {
     border-color: #005FFF;
+}
+
+.orange-color--border {
+    border-color: #F7931E;
 }
 
 .white-color--border {
@@ -34,8 +54,15 @@
     border-color: #000000;
 }
 
+
+/* text */
+
 .blue-color {
     color: #005FFF;
+}
+
+.orange-color {
+    color: #F7931E;
 }
 
 .white-color {
@@ -45,6 +72,9 @@
 .black-color {
     color: #000000;
 }
+
+
+/* font */
 
 .font-first {
     font-family: 'Roboto', sans-serif;

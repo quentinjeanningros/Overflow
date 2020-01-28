@@ -2,8 +2,8 @@ import React from 'react';
 import config from "../../../config";
 import TextBox from "../../../modules/TextBox.js";
 import './Login.css';
-import Lottie from 'react-lottie';
-import * as animationData from '../../../assets/loading-animation.json'
+import {NavigationBar, Link}  from '../../../modules/NavigationBar.js';
+import LoadingAnimation from '../../../modules/LoadingAnimation.js';
 
 class Login extends React.Component {
     constructor(props) {
@@ -16,6 +16,7 @@ class Login extends React.Component {
             hover: false,
             loop: false
         };
+        this.linkedPages = [new Link("Home", "/home"), new Link("Events", "events"), new Link("Partnership", "/partnership")];
         this.login = this.login.bind(this);
         this.setUsername = this.setUsername.bind(this);
         this.setPassword = this.setPassword.bind(this);
@@ -68,45 +69,29 @@ class Login extends React.Component {
     }
 
     render() {
-        let defaultOptions = {
-            loop: true,
-            autoplay: true,
-            setSpeed: 2,
-            animationData: animationData.default,
-            rendererSettings: {
-              preserveAspectRatio: 'xMidYMid slice'
-            }
-          };
         let classButton = "white-color font-first login--login-button__above"
         if (this.state.hover === true && this.state.username !== "" && this.state.password !== "")
             classButton += "--hover"
         else if (this.state.username === "" || this.state.password === "")
             classButton += "--none"
-        const error = this.state.error ?
-            <div>
-                {this.state.error}
-            </div>
-            : null;
+        const error =
+            <h2 className="orange-color font-first login-error">
+                {this.state.error  ? this.state.error.toUpperCase() : null}
+                </h2>;
+        const callback = () => {
+            if (this.state.loading === false)
+                    this.setState({loop: false});
+        }
         return (
             <div className="background black-color--back">
+                <NavigationBar color="white-color" triggerColor="blue-color" links={this.linkedPages}/>
                 <form className="login--form--container" onSubmit={this.login}>
                     {error}
                     <TextBox class="" label="Username" type="text" callback={this.setUsername}/>
                     <TextBox class="" label="Password" type="password" callback={this.setPassword}/>
                     {this.state.loop ?
                         <div className="login-load-animation">
-                            <Lottie options={defaultOptions}
-                            height={100}
-                            width={100}
-                            eventListeners={[
-                                {
-                                eventName: 'loopComplete',
-                                callback: () => {
-                                    if (this.state.loading === false)
-                                        this.setState({loop: false});
-                                    },
-                                },
-                            ]}/>
+                            <LoadingAnimation height={100} width={100} callback={callback}/>
                         </div>
                         :
                         <button className="button">

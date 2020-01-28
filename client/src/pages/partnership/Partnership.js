@@ -6,6 +6,7 @@ import ReactSvgLink from '../../modules/ReactSvgLink.js'
 import {SchoolEart, SchoolIseg, SchoolEpitech} from '../../assets/svg-react/index.js'
 import Typing from '../../modules/Typing.js';
 import config from '../../config';
+import LoadingAnimation from '../../modules/LoadingAnimation.js';
 
 const default_partner = {name: "", image: "", info: "", epitech: false, eartsup: false, iseg: false};
 
@@ -17,6 +18,7 @@ class Partnership extends React.Component {
             loading: true,
             error: null,
             partners: [],
+            loop: true
         };
         this.linkedPages = [new Link("Home", "/home"), new Link("Events", "events")];
         this.partners = []
@@ -56,16 +58,25 @@ class Partnership extends React.Component {
             EartClass += " transparent";
         else
             EartClass += " button";
+        let carrousel = null
+        if (this.state.error)
+            carrousel = <h2 className="orange-color font-first login-error">{this.state.error.toUpperCase()}</h2>;
+        else if (this.state.loop === true) {
+            const callback = () => {
+                if (this.state.loading === false)
+                        this.setState({loop: false});
+            }
+            carrousel = <LoadingAnimation height={400} width={400} callback={callback}/>
+        }
+        else
+            carrousel = <PartnerCarrousel partners={this.state.partners} callback={this.setFocused}/>
         return (
             <div id="partnership-page" className="background white-color--back">
                 <div className="square-title black-color--back"/>
                 <h1 className="page-title font-second black-color select-none">Partnership</h1>
                 <NavigationBar color="black-color" triggerColor="blue-color" links={this.linkedPages}/>
                 <div className="partnership--carrousel">
-                    {
-                        this.state.loading ? null : this.state.error ? "error" :
-                        <PartnerCarrousel partners={this.state.partners} callback={this.setFocused}/>
-                    }
+                    {carrousel}
                 </div>
                 <div className="partnership--focused-text--container">
                     <Typing text={this.state.focused.name.toUpperCase()} startTime={500} spacetime={80} class="partnership--focused-text black-color font-first"/>

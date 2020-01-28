@@ -40,3 +40,8 @@
 .login-load-animation {
     margin-top: 5vh;
 }
+
+.login-error {
+    font-size: 2vh;
+    height: 2.5vh;
+}
