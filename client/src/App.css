@@ -37,8 +37,14 @@
 
 .button {
     cursor: pointer;
+    background-color: transparent;
 }
 
 ::-webkit-scrollbar {
     display: none;
+}
+
+input, button, submit {
+    border:none;
+    outline: none;
 }

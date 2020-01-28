@@ -10,12 +10,13 @@ class Login extends React.Component {
             loading: false,
             error: null,
             username: "",
-            password: ""
+            password: "",
+            hover: false
         };
         this.login = this.login.bind(this);
         this.setUsername = this.setUsername.bind(this);
         this.setPassword = this.setPassword.bind(this);
-
+        this.toggleHover = this.toggleHover.bind(this);
     }
 
     async setUsername(text) {
@@ -54,7 +55,14 @@ class Login extends React.Component {
             });
     }
 
+    toggleHover() {
+        this.setState({hover: !this.state.hover})
+    }
+
     render() {
+        let classButton = "white-color font-first login--login-button__above"
+        if (this.state.hover === true)
+            classButton += "--hover"
         const error = this.state.error ?
             <div>
                 {this.state.error}
@@ -67,7 +75,20 @@ class Login extends React.Component {
                     {this.state.loading ? <h3 className="white-color">"IT IS LOADING"</h3> : null}
                     <TextBox class="" label="Username" type="text" callback={this.setUsername}/>
                     <TextBox class="" label="Password" type="password" callback={this.setPassword}/>
-                    <div className="white-color button" onClick={this.login}>login</div>
+                    {this.state.username !== "" && this.state.password !== "" ?
+                        <button className="button">
+                            <div className={classButton}
+                            onMouseEnter={this.toggleHover}
+                            onMouseLeave={this.toggleHover}
+                            onSelect={this.toggleHover}
+                            onClick={this.login}>
+                                Login
+                            </div>
+                            <div className="blue-color font-first login--login-button">
+                                Login
+                            </div>
+                        </button>
+                        : null}
                 </form>
             </div>
         );
