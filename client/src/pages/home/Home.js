@@ -1,6 +1,5 @@
 import React from 'react';
 import Info from './Info.js';
-import anime from 'animejs/lib/anime.es.js';
 import {vwTOpx, pxTOvw} from '../../assets/convert.js'
 import {Overflow, Triangle, TriangleOver} from '../../assets/svg-react/index.js';
 import './Home.css';
@@ -12,46 +11,19 @@ class Home extends React.Component {
         this.state = {
             drag: {x: vwTOpx(this.startX)},
         }
-        this.isDrag = false;
         this.clickPoint = 0;
 
-        this.onStart = this.onStart.bind(this);
         this.onDrag = this.onDrag.bind(this);
-        this.onEnd = this.onEnd.bind(this);
-    }
-
-    onStart(e) {
-        if(!this.isDrag) {
-            this.clickPoint = e.pageX;
-            this.isDrag = true;
-        }
     }
 
     onDrag(e) {
-        if(this.isDrag)
-            this.setState({drag: {x: vwTOpx(this.startX) + (e.pageX - this.clickPoint) / 2}})
+        var w = window.innerWidth / 2;
+        this.setState({drag: {x: vwTOpx(this.startX) + (e.pageX - w) / 10}})
     }
-
-    onEnd() {
-        let {drag} = this.state;
-        if(this.isDrag){
-            let virtualDrag = drag
-            this.isDrag = false
-            anime({
-                targets: virtualDrag,
-                x: vwTOpx(this.startX),
-                easing: 'easeOutElastic',
-                duration: 1000,
-                update: () => {this.setState({drag: {x: virtualDrag.x}})}
-            })
-        }
-    }
-
 
     render() {
-        let grab = this.isDrag ? "grabbing" : "grab"
         return (
-            <div>
+            <div onMouseMove={this.onDrag}>
                 <div className="background black-color--back">
                     <Triangle style={{left: pxTOvw(this.state.drag.x) + "vw"}} className="home-logo-element--triangle select-none"/>
                     <div className="home-button-container">
@@ -59,11 +31,7 @@ class Home extends React.Component {
                         <NavButtonHome text="Discounts" path="/partnership"/>
                     </div>
                     <Overflow className="home-logo-element--name select-none"/>
-                    <TriangleOver style={{left: pxTOvw(this.state.drag.x) + "vw", cursor: grab}} className="home-logo-element--triangle select-none"
-                    onMouseDown={this.onStart}
-                    onMouseMove={this.onDrag}
-                    onMouseUp={this.onEnd}
-                    onMouseLeave={this.onEnd}/>
+                    <TriangleOver style={{left: pxTOvw(this.state.drag.x) + "vw"}} className="home-logo-element--triangle select-none"/>
                 </div>
                 <Info/>
             </div>

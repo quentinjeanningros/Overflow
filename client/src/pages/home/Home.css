@@ -10,10 +10,10 @@
 }
 
 .nav-button-home__marging--none {
-  top: 0.5vw;
-  left: 0.5vw;
-  position: absolute;
-  display: flex;
+    top: 0.5vw;
+    left: 0.5vw;
+    position: absolute;
+    display: flex;
 }
 
 .nav-button-home__marging {

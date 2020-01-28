@@ -141,7 +141,7 @@ class EventCard extends React.Component {
                     </div>
                     <div className="event-card-info--second">
                         <h2 className={classLink}
-                            onMouseEnter={this.toggleHoverLink}
+                            onMouseEnter={this.enterHoverLink}
                             onMouseLeave={this.toggleHoverLink}
                             onClick={this.click}>
                                 Where ?

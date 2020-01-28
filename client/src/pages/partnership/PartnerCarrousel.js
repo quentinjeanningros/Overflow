@@ -120,7 +120,8 @@ class PartnerCardFocused extends React.Component {
         this.targetBackgroundIntern = React.createRef();
 
         this.click = this.click.bind(this);
-        this.toggleHover = this.toggleHover.bind(this);
+        this.toggleHoverEnter = this.toggleHoverEnter.bind(this);
+        this.toggleHoverLeave = this.toggleHoverLeave.bind(this);
     }
 
     updateProps(nextProps) {
@@ -222,8 +223,12 @@ class PartnerCardFocused extends React.Component {
         });
     }
 
-    toggleHover() {
-        this.setState({hover: !this.state.hover})
+    toggleHoverEnter() {
+        this.setState({hover: true})
+    }
+
+    toggleHoverLeave() {
+        this.setState({hover: false})
     }
 
     render() {
@@ -239,7 +244,7 @@ class PartnerCardFocused extends React.Component {
                     <Typing text={this.state.partner.name} startTime={450} spacetime={80} class="partner-card-focused--text black-color font-first" />
                 </div>
                 <div ref={this.targetContainer}>
-                <div className={"partner-card-focused--background__extern button" + overClass} onClick={this.click} onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover} ref={this.targetCard}>
+                <div className={"partner-card-focused--background__extern button" + overClass} onClick={this.click} onMouseEnter={this.toggleHoverEnter} onMouseLeave={this.toggleHoverLeave} ref={this.targetCard}>
                     <div className="front">
                         <h1 className="partner-card--text white-color font-first select-none back-hidden">{this.state.partner.name}</h1>
                         <div ref={this.targetBackgroundIntern} className="partner-card-focused--background__intern white-color--back back-hidden">

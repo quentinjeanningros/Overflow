@@ -79,8 +79,10 @@ class Login extends React.Component {
                 {this.state.error  ? this.state.error.toUpperCase() : null}
                 </h2>;
         const callback = () => {
-            if (this.state.loading === false)
+            if (this.state.loading === false) {
                     this.setState({loop: false});
+                    this.setState({hover: !this.state.hover});
+            }
         }
         return (
             <div className="background black-color--back">

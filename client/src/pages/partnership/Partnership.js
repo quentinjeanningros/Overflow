@@ -66,7 +66,7 @@ class Partnership extends React.Component {
                 if (this.state.loading === false)
                         this.setState({loop: false});
             }
-            carrousel = <LoadingAnimation height={400} width={400} callback={callback}/>
+            carrousel = <div className="partnership-loading"><LoadingAnimation height={400} width={400} callback={callback}/></div>
         }
         else
             carrousel = <PartnerCarrousel partners={this.state.partners} callback={this.setFocused}/>
