@@ -49,17 +49,17 @@ app.post('/create', myBodyParser, db.middleware, auth.middleware, auth.createHan
 app.get('/contacts', db.middleware, contacts.getHandler);
 app.post('/contacts', myBodyParser, db.middleware, auth.middleware, contacts.postHandler);
 app.patch('/contacts', myBodyParser, db.middleware, auth.middleware, contacts.patchHandler);
-app.delete('/contacts', myBodyParser, db.middleware, auth.middleware, contacts.deleteHandler);
+app.delete('/contacts/:id', db.middleware, auth.middleware, contacts.deleteHandler);
 
 app.get('/partnerships', db.middleware, partnerships.getHandler);
 app.post('/partnerships', myBodyParser, db.middleware, auth.middleware, partnerships.postHandler);
 app.patch('/partnerships', myBodyParser, db.middleware, auth.middleware, partnerships.patchHandler);
-app.delete('/partnerships', myBodyParser, db.middleware, auth.middleware, partnerships.deleteHandler);
+app.delete('/partnerships/:id', db.middleware, auth.middleware, partnerships.deleteHandler);
 
 app.get('/events', db.middleware, events.getHandler);
 app.post('/events', myBodyParser, db.middleware, auth.middleware, events.postHandler);
 app.patch('/events', myBodyParser, db.middleware, auth.middleware, events.patchHandler);
-app.delete('/events', myBodyParser, db.middleware, auth.middleware, events.deleteHandler);
+app.delete('/events/:id', db.middleware, auth.middleware, events.deleteHandler);
 
 app.get('/files', files.getListHandler);
 app.get('/files/:name', files.getFileHandler);

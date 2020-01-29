@@ -90,7 +90,7 @@ function uploadHandler(req, res) {
 }
 
 function deleteHandler(req, res) {
-    return storage.bucket(BUCKET_NAME).deleteFiles(req.params.name)
+    return storage.bucket(BUCKET_NAME).file(req.params.name).delete()
         .then(() => {
             res.status(200);
             res.json({message: "ok"});

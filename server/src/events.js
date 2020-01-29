@@ -43,9 +43,8 @@ function patchHandler(req, res) {
 }
 
 function deleteHandler(req, res) {
-    const body = req.body;
     req.my_db.query('DELETE FROM events WHERE id = ? ',
-        [body.id], (err, results) => {
+        [req.params.id], (err, results) => {
             if (err !== null) {
                 res.status(400);
                 res.json({error: err.sqlMessage});
