@@ -49,12 +49,18 @@ class Page extends React.Component {
         this.text = props.text;
         this.path = props.path;
 
-        this.toggleHover = this.toggleHover.bind(this);
+
+        this.toggleHoverEnter = this.toggleHoverEnter.bind(this)
+        this.toggleHoverLeave = this.toggleHoverLeave.bind(this)
         this.clicked = this.clicked.bind(this);
     }
 
-    toggleHover() {
-        this.setState({hover: !this.state.hover})
+    toggleHoverEnter() {
+        this.setState({hover: true});
+    }
+
+    toggleHoverLeave() {
+        this.setState({hover: false});
     }
 
     clicked() {
@@ -73,13 +79,15 @@ class Page extends React.Component {
             classText += " " + this.color
         }
         return (
-            <div className="navigation-bar__link-container button "
-                onMouseEnter={this.toggleHover}
-                onMouseLeave={this.toggleHover}
+            <button className="navigation-bar__link-container button "
+                onFocus={this.toggleHoverEnter}
+                onBlur={this.toggleHoverLeave}
+                onMouseEnter={this.toggleHoverEnter}
+                onMouseLeave={this.toggleHoverLeave}
                 onClick={this.clicked}>
                 <div className={classSquare}/>
                 <h3 className={classText}>{this.text}</h3>
-            </div>
+            </button>
         )
     }
 }

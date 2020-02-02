@@ -48,12 +48,18 @@ class NavButtonHome extends React.Component {
         this.text = props.text
         this.path = props.path
 
-        this.toggleHover = this.toggleHover.bind(this);
+        this.toggleHoverEnter = this.toggleHoverEnter.bind(this);
+        this.toggleHoverLeave = this.toggleHoverLeave.bind(this);
+
         this.clicked = this.clicked.bind(this);
     }
 
-    toggleHover() {
-        this.setState({hover: !this.state.hover})
+    toggleHoverEnter() {
+        this.setState({hover: true})
+    }
+
+    toggleHoverLeave() {
+        this.setState({hover: false})
     }
 
     clicked() {
@@ -61,23 +67,25 @@ class NavButtonHome extends React.Component {
     }
 
     render() {
-        let classContainer = "nav-button-home__marging"
-        if (this.state.hover === false)
+        let classContainer = "nav-button-home__above"
+        if (this.state.hover === true)
             classContainer += "--hover "
         return (
-            <div className="nav-button-home-container button"
-                onMouseEnter={this.toggleHover}
-                onMouseLeave={this.toggleHover}
+            <button className="nav-button-home-container button"
+                onFocus={this.toggleHoverEnter}
+                onBlur={this.toggleHoverLeave}
+                onMouseEnter={this.toggleHoverEnter}
+                onMouseLeave={this.toggleHoverLeave}
                 onClick={this.clicked}>
-                <div className="nav-button-home__marging--none">
-                    <div className="blue-color--back nav-button-home--square"/>
-                    <h3 className="blue-color select-none nav-button-home--text font-first">{this.text}</h3>
-                </div>
                 <div className={classContainer}>
                     <div className="white-color--back nav-button-home--square"/>
                     <h3 className="white-color select-none nav-button-home--text font-first">{this.text}</h3>
                 </div>
-            </div>
+                <div>
+                    <div className="blue-color--back nav-button-home--square"/>
+                    <h3 className="blue-color select-none nav-button-home--text font-first">{this.text}</h3>
+                </div>
+            </button>
         )
     }
 }

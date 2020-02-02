@@ -4,6 +4,7 @@ import TextBox from "../../../modules/TextBox.js";
 import './Login.css';
 import {NavigationBar, Link}  from '../../../modules/NavigationBar.js';
 import LoadingAnimation from '../../../modules/LoadingAnimation.js';
+import Button from '../../../modules/Button';
 
 class Login extends React.Component {
     constructor(props) {
@@ -13,14 +14,12 @@ class Login extends React.Component {
             error: null,
             username: "",
             password: "",
-            hover: false,
             loop: false
         };
         this.linkedPages = [new Link("Home", "/home"), new Link("Events", "events"), new Link("Partnership", "/partnership")];
         this.login = this.login.bind(this);
         this.setUsername = this.setUsername.bind(this);
         this.setPassword = this.setPassword.bind(this);
-        this.toggleHover = this.toggleHover.bind(this);
     }
 
     async setUsername(text) {
@@ -31,8 +30,7 @@ class Login extends React.Component {
         await this.setState({password: text})
     }
 
-    login(e) {
-        e.preventDefault()
+    login() {
         if (this.state.username === "" || this.state.password === "")
             return;
         if (this.state.loading)
@@ -63,17 +61,10 @@ class Login extends React.Component {
             });
     }
 
-
-    toggleHover() {
-        this.setState({hover: !this.state.hover})
-    }
-
     render() {
-        let classButton = "white-color font-first login--login-button__above"
-        if (this.state.hover === true && this.state.username !== "" && this.state.password !== "")
-            classButton += "--hover"
-        else if (this.state.username === "" || this.state.password === "")
-            classButton += "--none"
+        let lock = false
+        if (this.state.username === "" || this.state.password === "")
+            lock = true
         const error =
             <h2 className="orange-color font-first login-error">
                 {this.state.error  ? this.state.error.toUpperCase() : null}
@@ -96,17 +87,7 @@ class Login extends React.Component {
                             <LoadingAnimation height={100} width={100} callback={callback}/>
                         </div>
                         :
-                        <button className="button">
-                            <div className={classButton}
-                            onMouseEnter={this.toggleHover}
-                            onMouseLeave={this.toggleHover}
-                            onClick={this.login}>
-                                Login
-                            </div>
-                            <div className="blue-color font-first login--login-button">
-                                Login
-                            </div>
-                        </button>
+                        <Button text="Login" callback={this.login} class="login-button" lock={lock}/>
                     }
                 </form>
             </div>

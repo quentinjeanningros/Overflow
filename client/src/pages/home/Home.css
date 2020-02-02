@@ -1,79 +1,78 @@
 .home-button-container {
     position: absolute;
-    left: 70vw;
-    top: 35vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+    left: 65vw;
 }
 
 .nav-button-home-container {
     position: relative;
-    margin-bottom: 17vh;
+    margin-bottom: 10vh;
+    display: flex;
+    flex-direction: column;
 }
 
-.nav-button-home__marging--none {
-    top: 0.5vw;
-    left: 0.5vw;
-    position: absolute;
-    display: flex;
+.nav-button-home {
+
 }
 
-.nav-button-home__marging {
-    transition: all 0.15s ease-out;
-    top: 0.3vw;
-    left: 0.3vw;
+.nav-button-home__above {
+    transition: all 0.5s ease-out;
     position: absolute;
-    display: flex;
+    margin-top: -0.7vh;
+    margin-left: -0.7vh;
 }
 
-.nav-button-home__marging--hover {
-    transition: all 0.15s ease-out;
-    top: 0vw;
-    left: 0vw;
+.nav-button-home__above--hover {
+    transition: all 0.25s ease-out;
     position: absolute;
-    display: flex;
+    margin-top: -0.25vh;
+    margin-left: -0.25vh;
 }
 
 .nav-button-home--square {
-    width: 1vw;
     height: 1vw;
-    margin-right: 0.7vw;
+    width: 1vw;
 }
 
 .nav-button-home--text {
     font-size: 5vw;
-    margin-top: 1vh;
 }
 
 .home-logo-element--name {
-  position: absolute;
-  width: 45vw;
-  top: 18.5vh;
-  left: 15vw;
-  top: 50%;
-  animation-name: home-logo-element--name__floating;
-  animation-duration: 3s;
-  animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
+    position: absolute;
+    width: 45vw;
+    top: 18.5vh;
+    left: 15vw;
+    top: 50%;
+    animation-name: home-logo-element--name__floating;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
 }
 
 .home-logo-element--triangle {
-  position: absolute;
-  width: 39.1vw;
-  top: 50%;
-  transform: translateY(-47.5%);
-  animation-name: home-logo-element--triangle__floating;
-  animation-duration: 4s;
-  animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
+    position: absolute;
+    width: 39.1vw;
+    top: 50%;
+    transform: translateY(-47.5%);
+    animation-name: home-logo-element--triangle__floating;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
 }
 
 @keyframes home-logo-element--name__floating {
-  from { transform: translateY(-48%); }
-  65%  { transform: translateY(-53%); }
-  to   { transform: translateY(-48%); }
+    from    { transform: translateY(-48%); }
+    65%     { transform: translateY(-53%); }
+    to      { transform: translateY(-48%); }
 }
 
 @keyframes home-logo-element--triangle__floating {
-  from { transform: translateY(-53%); }
-  45%  { transform: translateY(-48%); }
-  to   { transform: translateY(-53%); }
+    from    { transform: translateY(-53%); }
+    45%     { transform: translateY(-48%); }
+    to      { transform: translateY(-53%); }
 }

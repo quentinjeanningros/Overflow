@@ -7,37 +7,7 @@
     padding-top: 20vh;
 }
 
-.login--login-button {
-    transition: all 0.5s ease-out;
-    margin-top: 5vh;
-    font-size: 3vh;
-}
-
-.login--login-button__above {
-    transition: all 0.5s ease-out;
-    margin-top: 4.5vh;
-    font-size: 3vh;
-    position: absolute;
-    margin-left: -0.5vh;
-}
-
-.login--login-button__above--hover {
-    transition: all 0.25s ease-out;
-    margin-top: 4.85vh;
-    font-size: 3vh;
-    position: absolute;
-    margin-left: -0.15vh;
-}
-
-.login--login-button__above--none {
-    transition: all 0.5s ease-out;
-    margin-top: 5vh;
-    font-size: 3vh;
-    position: absolute;
-    margin-left: 0vh;
-}
-
-.login-load-animation {
+.login-button {
     margin-top: 5vh;
 }
 

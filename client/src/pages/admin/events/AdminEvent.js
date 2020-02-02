@@ -1,10 +1,12 @@
 import React from 'react';
+import Button from '../../../modules/Button'
 
-class AdminEvent extends React.Component {
+class AdminContact extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
         };
+        this.logout = this.logout.bind(this)
     }
 
     logout() {
@@ -12,21 +14,13 @@ class AdminEvent extends React.Component {
         window.location.href = '/login';
     }
 
-    goFiles() {
-        window.location.href = '/admin/files';
-    }
-
     render() {
         return (
-            <div>
-                <button onClick={this.logout}> Logout </button>
-                ADMIN PAGE
-                <br/>
-                <br/>
-                <button onClick={this.goFiles}> Files </button>
+            <div className="background black-color--back">
+                <Button text="logout" callback={this.logout}/>
             </div>
         );
     }
 }
 
-export default AdminEvent;
+export default AdminContact;
