@@ -28,7 +28,7 @@ class Home extends React.Component {
                     <Triangle style={{left: pxTOvw(this.state.drag.x) + "vw"}} className="home-logo-element--triangle select-none"/>
                     <div className="home-button-container">
                         <NavButtonHome text="Events" path="/events"/>
-                        <NavButtonHome text="Discounts" path="/partnership"/>
+                        <NavButtonHome text="Discounts" path="/discounts"/>
                     </div>
                     <Overflow className="home-logo-element--name select-none"/>
                     <TriangleOver style={{left: pxTOvw(this.state.drag.x) + "vw"}} className="home-logo-element--triangle select-none"/>

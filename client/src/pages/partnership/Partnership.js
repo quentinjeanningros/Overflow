@@ -73,7 +73,7 @@ class Partnership extends React.Component {
         return (
             <div id="partnership-page" className="background white-color--back">
                 <div className="square-title black-color--back"/>
-                <h1 className="page-title font-second black-color select-none">Partnership</h1>
+                <h1 className="page-title font-second black-color select-none">Discounts</h1>
                 <NavigationBar color="black-color" triggerColor="blue-color" links={this.linkedPages}/>
                 <div className="partnership--carrousel">
                     {carrousel}

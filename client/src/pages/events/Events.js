@@ -36,7 +36,7 @@ class Events extends React.Component {
         new Event("lol", affiche, 10, "https://www.google.fr/maps/place/4+Rue+du+Dôme,+67000+Strasbourg", "1 Sep. 2019", killingthename),
         new Event("disco", affiche, 50, "https://www.google.fr/maps/place/4+Rue+du+Dôme,+67000+Strasbourg", "1 Sep. 2019", killingthename)];
 
-        this.linkedPages = [new Link("Home", "/home"), new Link("Partnership", "Partnership")]
+        this.linkedPages = [new Link("Home", "/home"), new Link("Discounts", "/discounts")]
         this.setFocused = this.setFocused.bind(this);
     }
 

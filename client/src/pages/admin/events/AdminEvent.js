@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Admin extends React.Component {
+class AdminEvent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -29,4 +29,4 @@ class Admin extends React.Component {
     }
 }
 
-export default Admin;
+export default AdminEvent;
