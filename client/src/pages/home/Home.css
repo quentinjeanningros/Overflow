@@ -15,10 +15,6 @@
     flex-direction: column;
 }
 
-.nav-button-home {
-
-}
-
 .nav-button-home__above {
     transition: all 0.5s ease-out;
     position: absolute;
