@@ -1,12 +1,10 @@
 .custom-button {
     transition: all 0.5s ease-out;
-    font-size: 3vh;
 }
 
 .custom-button__above {
     transition: all 0.5s ease-out;
     margin-top: -0.5vh;
-    font-size: 3vh;
     position: absolute;
     margin-left: -0.5vh;
 }
@@ -14,14 +12,12 @@
 .custom-button__above--hover {
     transition: all 0.25s ease-out;
     margin-top: -0.25vh;
-    font-size: 3vh;
     position: absolute;
     margin-left: -0.15vh;
 }
 
 .custom-button__above--none {
     transition: all 0.5s ease-out;
-    font-size: 3vh;
     position: absolute;
     margin-left: 0vh;
 }

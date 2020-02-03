@@ -33,8 +33,9 @@ class Button extends React.Component {
             classButton += "--hover"
         else if (this.props.lock === true)
             classButton += "--none"
+
         return (
-            <button className={this.props.class + " button"}
+            <button style={{fontSize: this.props.fontSize ? this.props.fontSize : "3vh"}} className={this.props.class + " button"}
                 onFocus={this.toggleHoverEnter}
                 onBlur={this.toggleHoverLeave}
                 onMouseEnter={this.toggleHoverEnter}

@@ -1,0 +1,13 @@
+.admin-home--text {
+    font-size: 6vh;
+}
+
+.admin-home--container {
+    margin-top: 10vh;
+    width: 100vw;
+    text-align: center;
+}
+
+#admin-home {
+    padding-bottom: 5vh;
+}

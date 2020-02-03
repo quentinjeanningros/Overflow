@@ -41,6 +41,6 @@
 .navigation-bar__link-square--hover {
     transition: all 0.15s ease-out;
     width: 1.5vw;
-    height: 6vh;
+    height: 3.5vw;
     margin-right: 0.5vw;
 }

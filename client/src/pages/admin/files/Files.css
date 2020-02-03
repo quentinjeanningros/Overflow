@@ -1,0 +1,10 @@
+.admin-files-title {
+    font-size: 5vh;
+}
+
+.admin-files-title--container{
+    margin-left: 5vh;
+    margin-top: 2.5vh;
+    display: flex;
+    flex-direction: row;
+}

@@ -1,5 +1,7 @@
 import React from 'react';
 import Button from '../../../modules/Button'
+import {NavigationBar, Link}  from '../../../modules/NavigationBar.js';
+import './AdminPartnership.css'
 
 class AdminPartnership extends React.Component {
     constructor(props) {
@@ -7,6 +9,8 @@ class AdminPartnership extends React.Component {
         this.state = {
         };
         this.logout = this.logout.bind(this)
+        this.linkedPages = [new Link("Files", "/admin/files"), new Link("Events", "/admin/events"), new Link("Contacts", "/admin/contacts")];
+        this.backHome = this.backHome.bind(this);
     }
 
     logout() {
@@ -14,10 +18,18 @@ class AdminPartnership extends React.Component {
         window.location.href = '/login';
     }
 
+    backHome() {
+        window.location.href = '/home';
+    }
+
     render() {
         return (
-            <div className="background black-color--back">
-                <Button text="logout" callback={this.logout}/>
+            <div className="admin-page background black-color--back">
+                <NavigationBar color="white-color" triggerColor="blue-color" links={this.linkedPages}/>
+                <div className="admin-main-button--container">
+                    <Button text="logout" callback={this.logout} class="admin-main-button"/>
+                    <Button text="back to site" callback={this.backHome} class="admin-main-button"/>
+                </div>
             </div>
         );
     }

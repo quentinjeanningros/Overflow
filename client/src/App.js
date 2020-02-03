@@ -6,6 +6,7 @@ import AdminHome from './pages/admin/home/AdminHome'
 import AdminContact from './pages/admin/contacts/AdminContact'
 import AdminPartnership from './pages/admin/partnerships/AdminPartnership'
 import AdminEvent from './pages/admin/events/AdminEvent'
+import Files from './pages/admin/files/Files'
 
 import Events from './pages/events/Events'
 import Home from './pages/home/Home'
@@ -42,6 +43,7 @@ function App() {
           <Route exact path="/admin/contacts" render={renderAuth(true, <AdminContact/>)}/>
           <Route exact path="/admin/events" render={renderAuth(true, <AdminEvent/>)}/>
           <Route exact path="/admin/partnership" render={renderAuth(true, <AdminPartnership/>)}/>
+          <Route exact path="/admin/files" render={renderAuth(true, <Files/>)}/>
 
           <Route exact path="/">
             <Redirect to="/home" />
