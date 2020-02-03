@@ -69,6 +69,8 @@ class PartnerCarrousel extends React.Component {
     }
 
     moveTo(id) {
+        if (this.isMove === true)
+            return;
         const {list} = this.state;
         this.move  = Math.floor(carrousselLength / 2) - id
         if (this.move < 0)
@@ -78,8 +80,8 @@ class PartnerCarrousel extends React.Component {
             for (let i = 0; i < this.move; ++i)
                 list.unshift(list.pop());
         this.setState({list: list});
-        this.clickable = false;
-        setTimeout(() => {this.clickable = true}, this.spacetime);
+        this.isMove = true;
+        setTimeout(() => {this.isMove = false}, transitionDuration);
     }
 
     generateItems(list) {
