@@ -73,24 +73,24 @@ class Files extends React.Component {
 
     render() {
         return (
-            <div className="admin-page background black-color--back">
+            <div id="admin-file-page" className="admin-page background black-color--back">
                 <NavigationBar color="white-color" triggerColor="blue-color" links={this.linkedPages}/>
                 <div className="admin-main-button--container">
                     <Button text="logout" callback={this.logout} class="admin-main-button"/>
                     <Button text="back to site" callback={this.backHome} class="admin-main-button"/>
                 </div>
-                <div className="admin-files-title--container">
-                    <h1 className="font-second white-color admin-files-title">Manage files</h1>
+                <h1 className="font-second white-color admin-files-title">Manage files</h1>
+                <div className="admin-file-container">
                     <UploadFile onUpload={this.update}/>
+                    <div className="admin-file--file-container">
+                        {/* <br/>
+                        {this.state.loading ? "LOADING" : null}
+                        <br/>
+                        <button onClick={this.update}> REFRESH </button>
+                        <br/> */}
+                        {this.state.files.map((file, i) => <File key={i} file={file} update={this.update} />)}
+                    </div>
                 </div>
-                <br/>
-                {this.state.loading ? "LOADING" : null}
-                <br/>
-                <button onClick={this.update}> REFRESH </button>
-                <br/>
-                {
-                    this.state.files.map((file, i) => <File key={i} file={file} update={this.update} />)
-                }
             </div>
         );
     }

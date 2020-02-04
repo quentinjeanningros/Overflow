@@ -94,14 +94,11 @@
 /* admin */
 
 .admin-main-button {
+    margin-top: 2.5vh;
     margin-left: 2.5vh;
 }
 
 .admin-main-button--container {
     display: flex;
     flex-direction: row;
-}
-
-.admin-page {
-    padding-top: 2.5vh;
 }

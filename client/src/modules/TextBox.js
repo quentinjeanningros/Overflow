@@ -5,7 +5,6 @@ class TextBox extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            text: "",
             focus: false
         };
         this.handleChange = this.handleChange.bind(this);
@@ -32,7 +31,7 @@ class TextBox extends React.Component {
                 <input onFocus={this.toggleFocus}
                     onBlur={this.toggleFocus}
                     type={this.props.type}
-                    value={this.state.username}
+                    value={this.props.value}
                     onChange={this.handleChange}
                     className={classInput}/>
             </label>

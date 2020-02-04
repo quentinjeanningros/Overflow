@@ -43,10 +43,10 @@ class AdminHome extends React.Component {
                 </div>
                 <div className="admin-home--container">
                     <p className="font-first white-color admin-home--text">
-                        Manage <span><Button text="files" callback={this.files} fontSize="7vh"/></span> and use them in the<br/>following pages. <br/><br/>
-                        Add new <span><Button text="events" callback={this.events} fontSize="7vh"/></span> for the campus,<br/>
-                        <Button text="partnership" callback={this.partnership} fontSize="7vh"/> let you change discounts.<br/> <br/>
-                        Who lead,  <br/>who design,  <br/>let them know in <Button text="contacts" callback={this.contacts} fontSize="7vh"/>.
+                        Manage <span><Button intext text="files" callback={this.files} fontSize="7vh"/></span> and use them in the<br/>following pages. <br/><br/>
+                        Add new <span><Button intext text="events" callback={this.events} fontSize="7vh"/></span> for the campus,<br/>
+                        <Button intext text="partnership" callback={this.partnership} fontSize="7vh"/> let you change discounts.<br/> <br/>
+                        Who lead,  <br/>who design,  <br/>let them know in <Button intext text="contacts" callback={this.contacts} fontSize="7vh"/>.
                     </p>
                 </div>
             </div>

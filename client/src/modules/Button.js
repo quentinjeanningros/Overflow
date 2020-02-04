@@ -15,7 +15,7 @@ class Button extends React.Component {
 
     callback(e) {
         e.preventDefault()
-        if (this.props.callback)
+        if (this.props.callback && !this.props.lock)
             this.props.callback()
     }
 
@@ -29,25 +29,31 @@ class Button extends React.Component {
 
     render() {
         let classButton = "white-color font-first custom-button__above"
-        if (this.state.hover === true)
+        if (this.state.hover === true && !this.props.lock)
             classButton += "--hover"
         else if (this.props.lock === true)
             classButton += "--none"
 
+        let display = null
+        const button =  <button style={{fontSize: this.props.fontSize ? this.props.fontSize : "3vh"}} className={this.props.class + " button"}
+                            onFocus={this.toggleHoverEnter}
+                            onBlur={this.toggleHoverLeave}
+                            onMouseEnter={this.toggleHoverEnter}
+                            onMouseLeave={this.toggleHoverLeave}
+                            onClick={this.callback}>
+                            <div className={classButton}>
+                                {this.props.text}
+                            </div>
+                            <div className="blue-color font-first  custom-button">
+                                {this.props.text}
+                            </div>
+                        </button>
+        if (this.props.intext)
+            display = button
+        else
+            display = <div>{button}</div>
         return (
-            <button style={{fontSize: this.props.fontSize ? this.props.fontSize : "3vh"}} className={this.props.class + " button"}
-                onFocus={this.toggleHoverEnter}
-                onBlur={this.toggleHoverLeave}
-                onMouseEnter={this.toggleHoverEnter}
-                onMouseLeave={this.toggleHoverLeave}
-                onClick={this.callback}>
-                <div className={classButton}>
-                    {this.props.text}
-                </div>
-                <div className="blue-color font-first  custom-button">
-                    {this.props.text}
-                </div>
-            </button>
+            display
         );
     }
 }

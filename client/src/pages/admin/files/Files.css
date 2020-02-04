@@ -1,10 +1,22 @@
 .admin-files-title {
     font-size: 5vh;
-}
-
-.admin-files-title--container{
     margin-left: 5vh;
     margin-top: 2.5vh;
+}
+
+.admin-file-container {
     display: flex;
     flex-direction: row;
+    position: absolute;
+    width: 100%;
+    margin-top: 3vh;
+    height: 80vh;
+}
+
+.admin-file--file-container {
+    display: flex;
+    flex-direction: row;
+    overflow: auto;
+    padding-left: 2.5vh;
+    padding-right: 2.5vh;
 }

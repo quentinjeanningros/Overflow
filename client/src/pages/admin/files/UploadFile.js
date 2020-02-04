@@ -1,6 +1,8 @@
 import React from 'react';
 import './UploadFile.css'
 import config from "../../../config";
+import Button from '../../../modules/Button';
+import TextBox from "../../../modules/TextBox.js";
 
 class UploadFile extends React.Component {
     constructor(props) {
@@ -12,6 +14,7 @@ class UploadFile extends React.Component {
         this.onFormSubmit = this.onFormSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
         this.fileUpload = this.fileUpload.bind(this);
+        this.updateFileName = this.updateFileName.bind(this)
     }
 
     onFormSubmit(e){
@@ -42,14 +45,25 @@ class UploadFile extends React.Component {
             });
     }
 
+    updateFileName(name) {
+        this.setState({filename: name})
+    }
+
     render() {
+        let uploadClass = "font-first upload-file--file-button--front button"
+        if (this.state.file)
+            uploadClass += " white-color--border white-color"
+        else
+            uploadClass += " blue-color--border blue-color"
         return (
-            <form onSubmit={this.onFormSubmit} className="form-upload">
-                <h1>File Upload</h1>
-                <input type="file" onChange={this.onChange} />
-                <input type="text" value={this.state.filename} onChange={(e) => this.setState({filename: e.target.value})} />
-                <button type="submit">Upload</button>
-            </form>
+            <div className="upload-file-container white-color--border">
+                <div className="upload-file--file-button--container">
+                    <button className={uploadClass}>{this.state.file ? "Select another file": "Select a file"}</button>
+                    <input type="file" onChange={this.onChange} className="upload-file--file-button"/>
+                </div>
+                <h1 className="white-color font-second">{this.state.filename}</h1>
+                <Button lock={this.state.file ? false : true} text="Upload" callback={this.onFormSubmit} class="upload-file--upload-button" fontSize="3vh"/>
+            </div>
         )
     }
 }
