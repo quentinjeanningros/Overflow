@@ -9,8 +9,18 @@ class File extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            loading: false
+            loading: false,
+            hover : false,
+            hoverButtonCopy : false,
+            hoverButtonDelete : false
         };
+        this.toggleHoverEnter = this.toggleHoverEnter.bind(this)
+        this.toggleHoverLeave = this.toggleHoverLeave.bind(this)
+        this.toggleHoverButtonCopyEnter = this.toggleHoverButtonCopyEnter.bind(this)
+        this.toggleHoverButtonCopyLeave = this.toggleHoverButtonCopyLeave.bind(this)
+        this.toggleHoverButtonDeleteEnter = this.toggleHoverButtonDeleteEnter.bind(this)
+        this.toggleHoverButtonDeleteLeave = this.toggleHoverButtonDeleteLeave.bind(this)
+        this.copyToClip = this.copyToClip.bind(this)
     }
 
     deleteFile() {
@@ -24,13 +34,77 @@ class File extends React.Component {
          */
     }
 
+    toggleHoverEnter() {
+        this.setState({hover: true});
+    }
+
+    toggleHoverLeave() {
+        this.setState({hover: false});
+    }
+
+    toggleHoverButtonCopyEnter() {
+        this.setState({hoverButtonCopy: true});
+    }
+
+    toggleHoverButtonCopyLeave() {
+        this.setState({hoverButtonCopy: false});
+    }
+
+    toggleHoverButtonDeleteEnter() {
+        this.setState({hoverButtonDelete: true});
+    }
+
+    toggleHoverButtonDeleteLeave() {
+        this.setState({hoverButtonDelete: false});
+    }
+
+    copyToClip() {
+        var el = document.createElement('textarea');
+        el.value = this.props.file;
+        el.setAttribute('readonly', '');
+        el.style = {position: 'absolute', left: '-9999px'};
+        document.body.appendChild(el);
+        el.select();
+        el.setSelectionRange(0, 99999)
+        document.execCommand('copy');
+        document.body.removeChild(el);
+    }
+
     render() {
+        let classContainer = "file-buttons--container"
+        if(this.state.hover || this.state.hoverButtonCopy || this.state.hoverButtonDelete)
+            classContainer += " blue-color--border"
+        else
+            classContainer += " white-color--border"
+
+        let classButtonCopy = "button font-first file-button"
+        if (this.state.hoverButtonCopy)
+            classButtonCopy += " blue-color--border blue-color"
+        else
+            classButtonCopy += " white-color--border white-color"
+
+        let classButtonDelete = "button font-first file-button"
+            if (this.state.hoverButtonDelete)
+                classButtonDelete += " white-color--border white-color"
+            else
+                classButtonDelete += " orange-color--border orange-color"
         return (
-            <div>
-                {this.props.file}
-                <img src={this.props.file} alt="" style={{height: 200}}/>
-                <button onClick={this.deleteFile}> DELETE FILE </button>
-                <br/>
+            <div className="file--container"
+                onMouseEnter={this.toggleHoverEnter}
+                onMouseLeave={this.toggleHoverLeave}>
+                <img src={this.props.file} alt="file-img" className="file-file"/>
+                <div className={classContainer}>
+                    <button className={classButtonCopy} onClick={this.copyToClip}
+                        onFocus={this.toggleHoverButtonCopyEnter}
+                        onBlur={this.toggleHoverButtonCopyLeave}
+                        onMouseEnter={this.toggleHoverButtonCopyEnter}
+                        onMouseLeave={this.toggleHoverButtonCopyLeave}>Copy Path</button>
+                    <button className={classButtonDelete} onClick={this.deleteFile}
+                        onFocus={this.toggleHoverButtonDeleteEnter}
+                        onBlur={this.toggleHoverButtonDeleteLeave}
+                        onMouseEnter={this.toggleHoverButtonDeleteEnter}
+                        onMouseLeave={this.toggleHoverButtonDeleteLeave}>Delete</button>
+                </div>
             </div>
         );
     }
@@ -73,7 +147,8 @@ class Files extends React.Component {
 
     render() {
         return (
-            <div id="admin-file-page" className="admin-page background black-color--back">
+            <div className="background black-color--back">
+            <div id="admin-file-page" className="black-color--back">
                 <NavigationBar color="white-color" triggerColor="blue-color" links={this.linkedPages}/>
                 <div className="admin-main-button--container">
                     <Button text="logout" callback={this.logout} class="admin-main-button"/>
@@ -91,6 +166,7 @@ class Files extends React.Component {
                         {this.state.files.map((file, i) => <File key={i} file={file} update={this.update} />)}
                     </div>
                 </div>
+            </div>
             </div>
         );
     }

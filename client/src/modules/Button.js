@@ -10,7 +10,6 @@ class Button extends React.Component {
         this.callback = this.callback.bind(this)
         this.toggleHoverEnter = this.toggleHoverEnter.bind(this)
         this.toggleHoverLeave = this.toggleHoverLeave.bind(this)
-
     }
 
     callback(e) {

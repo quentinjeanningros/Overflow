@@ -2,7 +2,6 @@ import React from 'react';
 import './UploadFile.css'
 import config from "../../../config";
 import Button from '../../../modules/Button';
-import TextBox from "../../../modules/TextBox.js";
 
 class UploadFile extends React.Component {
     constructor(props) {
@@ -10,16 +9,39 @@ class UploadFile extends React.Component {
         this.state ={
             file: null,
             filename: "",
+            hover: false,
+            focus: false
         };
         this.onFormSubmit = this.onFormSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
         this.fileUpload = this.fileUpload.bind(this);
-        this.updateFileName = this.updateFileName.bind(this)
+        this.updateFileName = this.updateFileName.bind(this);
+        this.toggleHoverEnter = this.toggleHoverEnter.bind(this)
+        this.toggleHoverLeave = this.toggleHoverLeave.bind(this)
+        this.toggleFocus = this.toggleFocus.bind(this)
+        this.handleChange = this.handleChange.bind(this)
+
+    }
+
+    toggleHoverEnter() {
+        this.setState({hover: true});
+    }
+
+    toggleHoverLeave() {
+        this.setState({hover: false});
     }
 
     onFormSubmit(e){
         e.preventDefault();
         this.fileUpload(this.state.file);
+    }
+
+    handleChange(event) {
+        this.setState({filename: event.target.value});
+    }
+
+    toggleFocus() {
+        this.setState({focus: !this.state.focus})
     }
 
     onChange(e) {
@@ -51,18 +73,43 @@ class UploadFile extends React.Component {
 
     render() {
         let uploadClass = "font-first upload-file--file-button--front button"
-        if (this.state.file)
-            uploadClass += " white-color--border white-color"
+        let containerClass = "white-color--border upload-file-container"
+        if (this.state.file) {
+            if (this.state.hover)
+                uploadClass += " blue-color--border blue-color"
+            else
+                uploadClass += " white-color--border white-color"
+        } else {
+            if (this.state.hover)
+                uploadClass += " white-color--border white-color"
+            else
+                uploadClass += " blue-color--border blue-color"
+            containerClass += "__empty"
+        }
+        let classTextbox = "font-second upload-file--textbox"
+        if (this.state.focus)
+            classTextbox += "__focus black-color white-color--back"
         else
-            uploadClass += " blue-color--border blue-color"
+            classTextbox += " white-color black-color--back blue-color--border"
         return (
-            <div className="upload-file-container white-color--border">
-                <div className="upload-file--file-button--container">
+            <div className={containerClass}>
+                <div className="upload-file--file-button--container"
+                    onMouseEnter={this.toggleHoverEnter}
+                    onMouseLeave={this.toggleHoverLeave}>
                     <button className={uploadClass}>{this.state.file ? "Select another file": "Select a file"}</button>
                     <input type="file" onChange={this.onChange} className="upload-file--file-button"/>
                 </div>
-                <h1 className="white-color font-second">{this.state.filename}</h1>
-                <Button lock={this.state.file ? false : true} text="Upload" callback={this.onFormSubmit} class="upload-file--upload-button" fontSize="3vh"/>
+                {this.state.file ? <div className="upload-file--textbox--container">
+                        <h3 className="upload-file--textbox--label font-second white-color">filename:</h3>
+                        <input
+                            onFocus={this.toggleFocus}
+                            onBlur={this.toggleFocus}
+                            type={this.props.type}
+                            value={this.state.filename}
+                            onChange={this.handleChange}
+                            className={classTextbox}/>
+                    </div> : null}
+                {this.state.file ? <Button text="Upload" callback={this.onFormSubmit} fontSize="3vh"/> : null}
             </div>
         )
     }

@@ -24,12 +24,14 @@ class AdminPartnership extends React.Component {
 
     render() {
         return (
-            <div className="admin-page background black-color--back">
+            <div className="background black-color--back">
+            <div id="admin-home" className="black-color--back">
                 <NavigationBar color="white-color" triggerColor="blue-color" links={this.linkedPages}/>
                 <div className="admin-main-button--container">
                     <Button text="logout" callback={this.logout} class="admin-main-button"/>
                     <Button text="back to site" callback={this.backHome} class="admin-main-button"/>
                 </div>
+            </div>
             </div>
         );
     }
