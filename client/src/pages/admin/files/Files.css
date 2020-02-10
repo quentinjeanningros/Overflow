@@ -58,3 +58,30 @@
     border-width: 0.5vh 0 0 0;
     margin-top: 1vh;
 }
+
+.admin-file--refresh-button {
+    transition: all 0.3s ease-out;
+    background-color: transparent;
+    position: absolute;
+    left: 2.5vh;
+    top: 45vh;
+    border-width: 0.5vh;
+    border-style: solid;
+    z-index: 3;
+}
+
+.admin-file--refresh-button--text--hover {
+    transition: all 0.3s ease-out;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    font-size: 3vh;
+    letter-spacing: 1vh;
+}
+
+.admin-file--refresh-button--text {
+    transition: all 0.3s ease-out;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    font-size: 3vh;
+    letter-spacing: normal;
+}

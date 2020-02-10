@@ -116,11 +116,14 @@ class Files extends React.Component {
         this.state = {
             loading: false,
             files: [],
+            hover: false
         };
         this.linkedPages = [new Link("Events", "/admin/events"), new Link("Partnership", "/admin/partnership"), new Link("Contacts", "/admin/contacts")];
         this.update = this.update.bind(this);
         this.loading = this.logout.bind(this);
         this.backHome = this.backHome.bind(this);
+        this.toggleHoverEnter = this.toggleHoverEnter.bind(this)
+        this.toggleHoverLeave = this.toggleHoverLeave.bind(this)
     }
 
     logout() {
@@ -130,6 +133,14 @@ class Files extends React.Component {
 
     backHome() {
         window.location.href = '/home';
+    }
+
+    toggleHoverEnter() {
+        this.setState({hover: true});
+    }
+
+    toggleHoverLeave() {
+        this.setState({hover: false});
     }
 
     update() {
@@ -146,6 +157,16 @@ class Files extends React.Component {
     }
 
     render() {
+        let classHover = "font-first admin-file--refresh-button--text"
+        if (this.state.hover)
+            classHover += "--hover blue-color "
+        else
+            classHover += " white-color "
+        let classHoverButton = "admin-file--refresh-button"
+        if (this.state.hover)
+            classHoverButton += " blue-color--border"
+        else
+            classHoverButton += " white-color--border"
         return (
             <div className="background black-color--back">
             <div id="admin-file-page" className="black-color--back">
@@ -154,6 +175,13 @@ class Files extends React.Component {
                     <Button text="logout" callback={this.logout} class="admin-main-button"/>
                     <Button text="back to site" callback={this.backHome} class="admin-main-button"/>
                 </div>
+                <button className={classHoverButton} onClick={this.update}
+                    onFocus={this.toggleHoverEnter}
+                    onBlur={this.toggleHoverLeave}
+                    onMouseEnter={this.toggleHoverEnter}
+                    onMouseLeave={this.toggleHoverLeave}>
+                    <div className={classHover}>REFRESH</div>
+                </button>
                 <h1 className="font-second white-color admin-files-title">Manage files</h1>
                 <div className="admin-file-container">
                     <UploadFile onUpload={this.update}/>
