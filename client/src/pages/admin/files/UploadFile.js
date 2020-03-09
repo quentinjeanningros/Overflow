@@ -59,7 +59,7 @@ class UploadFile extends React.Component {
             .then(response => response.json())
             .then(result => {
                 this.setState({file: null, filename: ""});
-                console.log(result);
+                this.props.onUpload();
             })
             .catch(e => {
                 console.log(e);
