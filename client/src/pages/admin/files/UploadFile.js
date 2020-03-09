@@ -31,8 +31,7 @@ class UploadFile extends React.Component {
         this.setState({hover: false});
     }
 
-    onFormSubmit(e){
-        e.preventDefault();
+    onFormSubmit() {
         this.fileUpload(this.state.file);
     }
 

@@ -4,16 +4,20 @@ import config from "../../../config";
 import {NavigationBar, Link}  from '../../../modules/NavigationBar.js';
 import Button from '../../../modules/Button'
 import './Files.css'
+import LoadingAnimation from "../../../modules/LoadingAnimation";
 
 class File extends React.Component {
     constructor(props) {
         super(props);
+        let elements = this.props.file.split("/");
         this.state = {
             loading: false,
             hover : false,
             hoverButtonCopy : false,
-            hoverButtonDelete : false
+            hoverButtonDelete : false,
+            name: elements[elements.length - 1]
         };
+        this.deleteFile = this.deleteFile.bind(this);
         this.toggleHoverEnter = this.toggleHoverEnter.bind(this)
         this.toggleHoverLeave = this.toggleHoverLeave.bind(this)
         this.toggleHoverButtonCopyEnter = this.toggleHoverButtonCopyEnter.bind(this)
@@ -24,14 +28,7 @@ class File extends React.Component {
     }
 
     deleteFile() {
-        /*
-        if (this.state.loading) return;
-        this.setState({loading: true});
-        fetch(config.API_URL + "/files/", {method: "DELETE"})
-            .then(response => response.json())
-            .then(result => this.setState({loading: false, files: result}))
-            .catch(e => {});
-         */
+        this.props.delete(this.state.name);
     }
 
     toggleHoverEnter() {
@@ -93,6 +90,9 @@ class File extends React.Component {
                 onMouseEnter={this.toggleHoverEnter}
                 onMouseLeave={this.toggleHoverLeave}>
                 <img src={this.props.file} alt="file-img" className="file-file"/>
+                <div>
+                    {this.state.name}
+                </div>
                 <div className={classContainer}>
                     <button className={classButtonCopy} onClick={this.copyToClip}
                         onFocus={this.toggleHoverButtonCopyEnter}
@@ -120,10 +120,10 @@ class Files extends React.Component {
         };
         this.linkedPages = [new Link("Events", "/admin/events"), new Link("Partnership", "/admin/partnership"), new Link("Contacts", "/admin/contacts")];
         this.update = this.update.bind(this);
-        this.loading = this.logout.bind(this);
+        this.deleteFile = this.deleteFile.bind(this);
         this.backHome = this.backHome.bind(this);
-        this.toggleHoverEnter = this.toggleHoverEnter.bind(this)
-        this.toggleHoverLeave = this.toggleHoverLeave.bind(this)
+        this.toggleHoverEnter = this.toggleHoverEnter.bind(this);
+        this.toggleHoverLeave = this.toggleHoverLeave.bind(this);
     }
 
     logout() {
@@ -150,6 +150,18 @@ class Files extends React.Component {
             .then(response => response.json())
             .then(result => this.setState({loading: false, files: result}))
             .catch(e => {});
+    }
+
+    deleteFile(name) {
+        if (this.state.loading) return;
+        console.log("delete file " + name);
+        this.setState({loading: true});
+        const headers = {
+            'Authorization': localStorage.getItem('token')
+        };
+        fetch(config.API_URL + "/files/" + name, {method: "DELETE", headers})
+            .then(() => {this.setState({loading: false}); this.update()})
+            .catch(() => {this.setState({loading: false}); this.update()});
     }
 
     componentDidMount() {
@@ -186,12 +198,11 @@ class Files extends React.Component {
                 <div className="admin-file-container">
                     <UploadFile onUpload={this.update}/>
                     <div className="admin-file--file-container">
-                        {/* <br/>
-                        {this.state.loading ? "LOADING" : null}
-                        <br/>
-                        <button onClick={this.update}> REFRESH </button>
-                        <br/> */}
-                        {this.state.files.map((file, i) => <File key={i} file={file} update={this.update} />)}
+                        {
+                            this.state.loading ?
+                                <LoadingAnimation height={400} width={400} callback={() => {}}/> :
+                            this.state.files.map((file, i) => <File key={i} file={file} update={this.update} delete={this.deleteFile}/>)
+                        }
                     </div>
                 </div>
             </div>
